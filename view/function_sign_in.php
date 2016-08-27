@@ -8,8 +8,8 @@
 session_start();
 require '../medoo.php';
 
-$email_login = trim($_POST['mail']);
-$pwd_login = trim($_POST['pwd']);
+$email_login = trim($_POST["mail"]);
+$pwd_login = trim($_POST["pwd"]);
 
 try {
     $database = new medoo([
@@ -28,17 +28,17 @@ try {
 
     if (($pwd_correct != null) && ($pwd_correct[0]["user_password"] == $pwd_login)) {
         //correct login, set session
-        $_SESSION['login_email'] = $email_login;
-        $_SESSION['login_nickname'] = $pwd_correct[0]["user_nickname"];
+        $_SESSION["login_email"] = $email_login;
+        $_SESSION["login_nickname"] = $pwd_correct[0]["user_nickname"];
 
         header("Location: /");
     } else {
         //wrong login, go to error page
-        echo 'null';
+        header("Location: view_message_page.php?type=signinWrong");
     }
 } catch (Exception $exception) {
     //if database server goes wrong
-    echo "Opps, there's something wrong on the server~";
+    header("Location: view_message_page.php?type=serverError");
 }
 
 
