@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/bootstrap-material-design.css">
 <link rel="stylesheet" type="text/css" href="/css/ripples.min.css">
@@ -52,7 +53,7 @@
                     <li><a href="/view/view_sign_up.php">Sign Up</a></li>
                 </ul>
                 <?php
-            }else {
+            } else {
                 ?>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/view/view_profile.php">Welcome, <?php echo $_SESSION["login_nickname"]; ?>!</a></li>
@@ -64,6 +65,20 @@
         </div>
     </div>
 </div>
+
+<!--<div class="row">-->
+<!--    <div class="col-xs-4">-->
+<!--        <div class="well page">-->
+<!--            <div class="navbar">-->
+<!--                <a href="javascript:void(0)" class="nav">天津大学</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-xs-8">-->
+<!---->
+<!--    </div>-->
+<!--</div>-->
+
 
 <script>
     $.material.init();

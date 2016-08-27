@@ -7,5 +7,7 @@
 
 <?php include "view/navbar.php" ?>
 
+
+
 </body>
 </html>
