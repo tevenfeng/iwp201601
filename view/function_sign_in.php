@@ -26,7 +26,7 @@ try {
 
     $pwd_correct = $database->select("users_information", ["user_password", "user_nickname"], ["user_email" => $email_login]);
 
-    if (($pwd_correct != null) && ($pwd_correct[0]["user_password"] == $pwd_login)) {
+    if ((count($pwd_correct)!=0) && ($pwd_correct[0]["user_password"] == $pwd_login)) {
         //correct login, set session
         $_SESSION["login_email"] = $email_login;
         $_SESSION["login_nickname"] = $pwd_correct[0]["user_nickname"];
