@@ -6,17 +6,25 @@
 <script type="text/javascript" src="/js/material.min.js"></script>
 <script type="text/javascript" src="/js/ripples.min.js"></script>
 
+<?php session_start(); ?>
+
 <div class="navbar navbar-info">
     <div class="container-fluid">
         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-material-light-blue-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="/">Eswap</a>
         </div>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a class="dropdown-toggle"
                        href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
-                       data-toggle="dropdown" data-target="#">Dropdown
+                       data-toggle="dropdown" data-target="#">Catogary
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="javascript:void(0)">Action</a></li>
@@ -36,14 +44,27 @@
                 </div>
             </form>
 
-            <ul class="nav navbar-nav navbar-right">
-
-                <li><a href="/view/view_sign_in.php">Sign In</a></li>
-                <li><a href="javascript:void(0)">Sign Up</a></li>
-            </ul>
+            <?php
+            if (!isset($_SESSION["login_nickname"])) {
+                ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/view/view_sign_in.php">Sign In</a></li>
+                    <li><a href="/view/view_sign_up.php">Sign Up</a></li>
+                </ul>
+                <?php
+            }else {
+                ?>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/view/view_profile.php">Welcome, <?php echo $_SESSION["login_nickname"]; ?>!</a></li>
+                    <li><a href="/view/function_logout.php">Logout</a></li>
+                </ul>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>
+
 <script>
     $.material.init();
 </script>

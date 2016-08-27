@@ -7,10 +7,10 @@ use eswap;
 create table users_information(
 	user_id int NOT NULL primary key auto_increment,
 	user_nickname varchar(100) NOT NULL,
-	user_email varchar(100) NOT NULL,
+	user_email varchar(100) NOT NULL UNIQUE,
 	user_password varchar(100) NOT NULL,
-	user_area varchar(100) NOT NULL,
-	user_phonenumber varchar(100) NOT NULL
+	user_area varchar(100),
+	user_phonenumber varchar(100)
 );
 
 create table need_information(
@@ -42,3 +42,8 @@ create table catogary_information(
     catogary_second_class varchar(50) unique,
     primary key(catogary_first_class, catogary_second_class)
 );
+
+
+-- Insert some test data
+
+INSERT INTO users_information(user_nickname, user_email, user_password) VALUES('tevenfeng','fengdingwen@outlook.com','000417');
