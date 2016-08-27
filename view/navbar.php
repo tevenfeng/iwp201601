@@ -9,18 +9,18 @@
 
 <?php session_start(); ?>
 
-<div class="navbar navbar-info">
+<div class="navbar navbar-warning">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-material-light-blue-collapse">
+                    data-target=".navbar-warning-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">Eswap</a>
         </div>
-        <div class="navbar-collapse collapse navbar-material-light-blue-collapse">
+        <div class="navbar-collapse collapse navbar-warning-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a class="dropdown-toggle"
@@ -65,20 +65,6 @@
         </div>
     </div>
 </div>
-
-<!--<div class="row">-->
-<!--    <div class="col-xs-4">-->
-<!--        <div class="well page">-->
-<!--            <div class="navbar">-->
-<!--                <a href="javascript:void(0)" class="nav">天津大学</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="col-xs-8">-->
-<!---->
-<!--    </div>-->
-<!--</div>-->
-
 
 <script>
     $.material.init();
