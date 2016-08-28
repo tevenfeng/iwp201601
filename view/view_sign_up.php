@@ -34,9 +34,37 @@
                 </div>
                 <div class="modal-body">
                     <form action="function_sign_up.php" method="post">
-                        <div class="form-group label-floating is-empty">
-                            <label for="nickname" class="control-label">Your nickname</label>
-                            <input type="text" class="form-control" id="nickname" name="nickname" required>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group label-floating is-empty">
+                                    <label for="nickname" class="control-label">Your nickname</label>
+                                    <input type="text" class="form-control" id="nickname" name="nickname" required>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">Gender</label>
+
+                                        <div class="col-md-10">
+                                            <div class="radio radio-primary">
+                                                <label>
+                                                    <input type="radio" name="genderOptions" id="optionMale" value="0">
+                                                    <span class="circle"></span><span class="check"></span>
+                                                    Male
+                                                </label>
+                                            </div>
+                                            <div class="radio radio-primary">
+                                                <label>
+                                                    <input type="radio" name="genderOptions" id="optionFemale" value="1" required>
+                                                    <span class="circle"></span><span class="check"></span>
+                                                    Female
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group label-floating is-empty">

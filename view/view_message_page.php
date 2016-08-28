@@ -1,8 +1,8 @@
 <?php
 
 $class=[
-    "Error" => "errorbg",
-    "Succeed" => "successbg"
+    "Error" => "danger",
+    "Succeed" => "success"
 ];
 
 $type = $_GET["type"];
@@ -29,14 +29,14 @@ if ($type === "signinWrong") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eswap - </title>
+    <title>Eswap - <?php echo $class[$messageType]; ?></title>
     <style type="text/css">
-        .errorbg {
-            background-color: #FF5722;
+        .danger {
+            background-color: #F44336;
         }
 
-        .successbg{
-            background-color: #009688;
+        .success{
+            background-color: #4CAF50;
         }
     </style>
 </head>
@@ -57,7 +57,7 @@ if ($type === "signinWrong") {
                     <p><?php echo $messageContent; ?></p>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="<?php echo $action; ?>">DISMISS</a>
+                    <a class="btn btn-<?php echo $class[$messageType]; ?>" href="<?php echo $action; ?>">DISMISS</a>
                 </div>
             </div>
         </div>
