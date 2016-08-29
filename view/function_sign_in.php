@@ -6,7 +6,7 @@
  * Time: 9:47
  */
 session_start();
-require '../medoo.php';
+require_once '../medoo.php';
 
 $email_login = trim($_POST["mail"]);
 $pwd_login = trim($_POST["pwd"]);

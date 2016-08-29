@@ -6,7 +6,7 @@
  * Time: 11:50
  */
 session_start();
-require "../medoo.php";
+require_once "../medoo.php";
 
 $nickname_to_register = trim($_POST["nickname"]);
 $email_to_register = trim($_POST["mail"]);

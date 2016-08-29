@@ -1,6 +1,6 @@
 <?php
 
-$class=[
+$class = [
     "Error" => "danger",
     "Succeed" => "success"
 ];
@@ -14,14 +14,18 @@ if ($type === "signinWrong") {
     $messageType = "Error";
     $messageContent = "The email address has already been registered! Please use another email or try to sign in.";
     $action = "view_sign_up.php";
-}else if($type == "signupSucceeded"){
+} else if ($type == "signupSucceeded") {
     $messageType = "Succeed";
     $messageContent = 'Sign up succeeded! Please click "DISMISS" to sign in.';
     $action = "view_sign_in.php";
-}else if($type="serverError"){
+} else if ($type == "serverError") {
     $messageType = "Error";
     $messageContent = "Opps, there's something wrong on the server, please try again later!";
     $action = "/";
+} else if ($type == "profileUpdateSuccess") {
+    $messageType = "Succeed";
+    $messageContent = 'Your profile has been updated successfully! Click "DISMISS" to go back.';
+    $action = "view_profile_edit.php";
 }
 
 ?>
@@ -35,7 +39,7 @@ if ($type === "signinWrong") {
             background-color: #F44336;
         }
 
-        .success{
+        .success {
             background-color: #4CAF50;
         }
     </style>
@@ -50,14 +54,16 @@ if ($type === "signinWrong") {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header <?php echo $class[$messageType]; ?>">
-                    <button type="button" class="close" aria-hidden="true">×</button>
                     <h4 class="modal-title"><?php echo $messageType; ?></h4>
                 </div>
                 <div class="modal-body">
                     <p><?php echo $messageContent; ?></p>
                 </div>
                 <div class="modal-footer">
-                    <a class="btn btn-<?php echo $class[$messageType]; ?>" href="<?php echo $action; ?>">DISMISS</a>
+                    <a class="btn btn-<?php echo $class[$messageType] . "<br />";
+                    if (isset($_GET["exception"])) {
+                        echo $_GET["exception"];
+                    } ?>" href="<?php echo $action; ?>">DISMISS</a>
                 </div>
             </div>
         </div>

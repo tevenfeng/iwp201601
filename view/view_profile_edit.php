@@ -39,6 +39,32 @@
 
 <?php
 
+require_once "../medoo.php";
+try {
+    $database = new medoo([
+        'database_type' => 'mysql',
+        'database_name' => 'eswap',
+        'server' => 'localhost',
+        'username' => 'root',
+        'password' => 'root',
+        'charset' => 'utf8',
+
+        // [optional]
+        'port' => 3306,
+    ]);
+
+    $user_to_select = $_SESSION["login_email"];
+
+    $user_information = $database->select("users_information", ["user_nickname",
+        "user_password",
+        "user_nickname",
+        "user_gender",
+        "user_area",
+        "user_phonenumber"], ["user_email" => $user_to_select])[0];
+} catch (Exception $exception) {
+    header("Location: view_message_page.php?type=serverError");
+}
+
 ?>
 
 <div class="container-fluid">
@@ -56,9 +82,10 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group form-group-lg label-floating is-empty">
+                        <div class="form-group form-group-lg is-empty">
                             <label for="nickname" class="control-label">Your nickname</label>
-                            <input type="email" class="form-control" id="nickname" disabled="">
+                            <input type="text" class="form-control" id="nickname" name="nickname" disabled=""
+                                   value="<?php echo $user_information["user_nickname"]; ?>" required>
                             <p class="help-block">Your nickname cannot be empty.</p>
                         </div>
                     </div>
@@ -69,15 +96,22 @@
                             <div class="col-md-10">
                                 <div class="radio radio-primary">
                                     <label>
-                                        <input type="radio" name="genderOptions" id="optionMale" value="0" disabled="">
+                                        <input type="radio" name="genderOptions" id="optionMale"
+                                               <?php if($user_information["user_gender"]==0) {?>
+                                               checked="checked"
+                                               <?php } ?>
+                                               value="0" disabled="">
                                         <span class="circle"></span><span class="check"></span>
                                         Male
                                     </label>
                                 </div>
                                 <div class="radio radio-primary">
                                     <label>
-                                        <input type="radio" name="genderOptions" id="optionFemale" value="1"
-                                               disabled="">
+                                        <input type="radio" name="genderOptions" id="optionFemale"
+                                                <?php if($user_information["user_gender"]!=0) {?>
+                                                    checked="checked"
+                                                <?php } ?>
+                                               value="1" disabled="">
                                         <span class="circle"></span><span class="check"></span>
                                         Female
                                     </label>
@@ -87,11 +121,12 @@
                     </div>
                 </div>
 
-                <div class="form-group form-group-lg label-floating is-empty">
+                <div class="form-group form-group-lg is-empty">
                     <label for="password" class="control-label">Your password</label>
                     <div class="row">
                         <div class="col-xs-8">
-                            <input type="password" class="form-control" id="password" disabled="">
+                            <input type="password" class="form-control" id="password" name="password" disabled=""
+                                   value="<?php echo $user_information["user_password"]; ?>" required>
                         </div>
                         <div class="col-xs-4">
                             <a id="pwdHide" class="btn btn-info" onmousedown="displayPwd()"
@@ -100,14 +135,21 @@
                     </div>
                 </div>
 
-                <div class="form-group form-group-lg label-floating is-empty">
-                    <label for="city" class="control-label">City where you live</label>
-                    <input type="text" class="form-control" id="city" disabled="">
-                </div>
-
-                <div class="form-group form-group-lg label-floating is-empty">
-                    <label for="phone" class="control-label">Your phone number</label>
-                    <input type="tel" class="form-control" id="phone" disabled="">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg is-empty">
+                            <label for="city" class="control-label">City where you live</label>
+                            <input type="text" class="form-control" id="city" disabled="" name="city"
+                                   value="<?php echo $user_information["user_area"]; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-group-lg is-empty">
+                            <label for="phone" class="control-label">Your phone number</label>
+                            <input type="tel" class="form-control" id="phone" disabled="" name="phone"
+                                   value="<?php echo $user_information["user_phonenumber"]; ?>">
+                        </div>
+                    </div>
                 </div>
 
                 <div style="text-align: center;visibility: hidden;" id="submitBtn">
