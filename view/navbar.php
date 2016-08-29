@@ -58,10 +58,24 @@
                     } else {
                         ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="/view/view_profile_edit.php">Welcome, <?php echo $_SESSION["login_nickname"]; ?>
-                                    !</a></li>
-                            <li><a href="/view/function_logout.php">Logout</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle"
+                                   href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html"
+                                   data-toggle="dropdown"
+                                   data-target="#">Welcome, <?php echo $_SESSION["login_nickname"]; ?>
+                                    !
+                                    <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/view/view_profile_edit.php">Your profile</a></li>
+                                    <li class="divider"></li>
+                                    <li class="dropdown-header">Needs and Deals</li>
+                                    <li><a href="javascript:void(0)">Your needs</a></li>
+                                    <li><a href="javascript:void(0)">Your deals</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/view/function_logout.php">Logout</a></li>
+                                </ul>
+                            </li>
+
                         </ul>
                         <?php
                     }

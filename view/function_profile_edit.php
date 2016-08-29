@@ -25,6 +25,7 @@ try {
     DB::$password = 'root';
     DB::$host = "localhost";
     DB::$dbName = 'eswap';
+    DB::$encoding='utf8';
 
     DB::query("UPDATE users_information
 set user_nickname=\"" . $nickname_to_update . "\",

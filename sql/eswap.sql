@@ -11,17 +11,18 @@ CREATE TABLE users_information (
   user_nickname    VARCHAR(100) NOT NULL,
   user_email       VARCHAR(100) NOT NULL UNIQUE,
   user_password    VARCHAR(100) NOT NULL,
-#   true means female and false means male
+  #   true means female and false means male
   user_gender      BOOLEAN,
   user_area        VARCHAR(100),
   user_phonenumber VARCHAR(100)
 );
 
-CREATE TABLE need_information (
+CREATE TABLE needs_information (
   need_id                 INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   need_user_id            INT NOT NULL,
   need_start_time         VARCHAR(100),
   need_state              VARCHAR(100),
+  need_title              VARCHAR(100),
   need_goods_description  VARCHAR(300),
   need_goods_quality      VARCHAR(100),
   need_goods_first_class  VARCHAR(100),
@@ -38,7 +39,7 @@ CREATE TABLE trading_information (
   trade_second_user_id   INT,
   trade_start_trade_time VARCHAR(100),
   trade_state            VARCHAR(100),
-  FOREIGN KEY (trade_need_id) REFERENCES need_information (need_id)
+  FOREIGN KEY (trade_need_id) REFERENCES needs_information (need_id)
 );
 
 CREATE TABLE catogary_information (
@@ -47,7 +48,21 @@ CREATE TABLE catogary_information (
   PRIMARY KEY (catogary_first_class, catogary_second_class)
 );
 
+CREATE TABLE station_message (
+  message_id           INT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  message_from_user_id INT      NOT NULL,
+  message_to_user_id   INT      NOT NULL,
+  message_time         DATETIME NOT NULL,
+  message_need_id      INT      NOT NULL,
+  message_status       INT      NOT NULL,
+  FOREIGN KEY (message_from_user_id) REFERENCES users_information (user_id),
+  FOREIGN KEY (message_to_user_id) REFERENCES users_information (user_id),
+  FOREIGN KEY (message_need_id) REFERENCES needs_information (need_id)
+);
+
 -- Insert some test data
 
 INSERT INTO users_information (user_nickname, user_email, user_password)
 VALUES ('tevenfeng', 'fengdingwen@outlook.com', '000417');
+INSERT INTO users_information (user_nickname, user_email, user_password)
+VALUES ('fengdingwen', 'fengdingwen@qq.com', '000417');
