@@ -2,6 +2,10 @@
 <html>
 <head>
     <title>Eswap - Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0"/>
+    <meta name="format-detection" content="telephone-no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <script>
         function displayPwd() {
             var passwordInput = document.getElementById("password");
@@ -26,8 +30,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-1 col-sm-2 col-md-4"></div>
-        <div class="col-xs-10 col-sm-8 col-md-4">
+        <div class="col-sm-2 col-md-4"></div>
+        <div class="col-sm-8 col-md-4">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-header">Sign In</h1>
@@ -59,7 +63,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-xs-1 col-sm-2 col-md-4"></div>
+            <div class="col-sm-2 col-md-4"></div>
         </div>
     </div>
 </div>
