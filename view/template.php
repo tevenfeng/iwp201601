@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
-                    <?php include_once "view/categoryNav.php"; ?>
+                    <?php include_once "categoryNav.php"; ?>
                 </div>
             </div>
         </div>
