@@ -8,7 +8,6 @@
 <script type="text/javascript" src="/js/material.min.js"></script>
 <script type="text/javascript" src="/js/ripples.min.js"></script>
 <script type="text/javascript" src="/js/jquery.smartmenus.js"></script>
-<link rel='stylesheet' type='text/css' href='/css/sm-clean/sm-clean.css'>
 
 <?php session_start(); ?>
 <div class="container-fluid">
@@ -27,12 +26,6 @@
                 </div>
                 <div class="navbar-collapse collapse navbar-warning-collapse">
 
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group has-warning">
-                            <input class="form-control col-sm-8" type="text" placeholder="Search">
-                        </div>
-                    </form>
-
                     <?php
                     if (!isset($_SESSION["login_nickname"])) {
                         ?>
@@ -44,7 +37,7 @@
                     } else {
                         ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="javascript:void(0)">Requests <span class="badge">3</span></a></li>
+                            <li><a href="/view/view_station_message.php">Requests <span class="badge"><?php echo $_SESSION["unread_messages_number"]; ?></span></a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle"
                                    href="javascript:void(0)"
@@ -52,12 +45,12 @@
                                    data-target="#"><?php echo $_SESSION["login_nickname"]; ?>
                                     <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/view/view_profile_edit.php">Your profile</a></li>
+                                    <li><a href="/view/view_profile_edit.php">Your Profile</a></li>
                                     <li class="divider"></li>
                                     <li class="dropdown-header">Needs and Deals</li>
-                                    <li><a href="/view/view_uncompleted_needs.php">Unfinished needs</a></li>
-                                    <li><a href="/view/view_completed_needs.php">Finished deals</a></li>
-                                    <li><a href="javascript:void(0)">Your deals</a></li>
+                                    <li><a href="/view/view_uncompleted_needs.php">Unfinished Needs</a></li>
+                                    <li><a href="/view/view_completed_needs.php">Finished Needs</a></li>
+                                    <li><a href="javascript:void(0)">Your Deals</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/view/function_logout.php">Logout</a></li>
                                 </ul>

@@ -24,12 +24,17 @@ try {
         'port' => 3306,
     ]);
 
-    $pwd_correct = $database->select("users_information", ["user_password", "user_nickname"], ["user_email" => $email_login]);
+    $pwd_correct = $database->select("users_information", ["user_password", "user_nickname", "user_id"], ["user_email" => $email_login]);
 
-    if ((count($pwd_correct)!=0) && ($pwd_correct[0]["user_password"] == $pwd_login)) {
+    if ((count($pwd_correct) != 0) && ($pwd_correct[0]["user_password"] == $pwd_login)) {
         //correct login, set session
         $_SESSION["login_email"] = $email_login;
         $_SESSION["login_nickname"] = $pwd_correct[0]["user_nickname"];
+        $_SESSION["login_user_id"] = $pwd_correct[0]["user_id"];
+
+        $number_of_unread_messages = $database->count("station_message", ["AND" => ["message_to_user_id" => $_SESSION["login_user_id"]]]);
+
+        $_SESSION["unread_messages_number"] = $number_of_unread_messages;
 
         header("Location: /");
     } else {

@@ -20,6 +20,7 @@
                     <?php include "categoryNav.php"; ?>
                 </div>
             </div>
+            <br />
         </div>
         <div class="well col-sm-8 col-md-6">
 <!--            在这里放这个页面的内容-->

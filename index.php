@@ -6,11 +6,15 @@
     <meta name="format-detection" content="telephone-no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <script type="text/javascript" src="/js/jquery.smartmenus.js"></script>
+    <link rel='stylesheet' type='text/css' href='/css/sm-blue/sm-blue.css'>
 </head>
 <body>
 
 <?php
 include "view/navbar.php";
+
+$panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
 
 require_once "medoo.php";
 try {
@@ -44,7 +48,17 @@ try {
         }
     }
 
+    $most_recent_need_information = $database->query("select user_nickname, 
+                                                             needs_information.* 
+                                                      from needs_information join users_information 
+                                                      where user_id=need_user_id and need_state=0
+                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit 0,8;")->fetchAll();
+
+    $need_number = count($most_recent_need_information);
+
     $_SESSION["category"] = $first_class;
+
+    $category_information = $_SESSION["category"];
 
 } catch (Exception $exception) {
     header("Location: view_message_page.php?type=serverError");
@@ -55,17 +69,62 @@ try {
     <div class="row">
         <div class="col-sm-2 col-md-3">
             <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6">
-                    <?php include_once "view/categoryNav.php"; ?>
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+                    <div>
+                        <ul id="main-menu" class="sm sm-blue sm-vertical">
+                            <?php
+                            foreach ($category_information as $first_class => $second_classes) {
+                                ?>
+                                <li>
+                                    <a href="/view/view_search_needs.php?firstCat=<?php echo $first_class; ?>"><?php echo $first_class; ?></a>
+                                    <ul>
+                                        <?php
+                                        foreach ($second_classes as $key => $value) {
+                                            ?>
+                                            <li>
+                                                <a href="/view/view_search_needs.php?secondCat=<?php echo $value; ?>"><?php echo $value; ?></a>
+                                            </li>
+                                        <?php } ?>
+                                    </ul>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <script>
+                            $(function () {
+                                $('#main-menu').smartmenus();
+                            });
+                        </script>
+                    </div>
                 </div>
             </div>
             <br/>
         </div>
         <div class="well col-sm-8 col-md-6">
-
             <!--            主页内容-->
-
+            <div class="row">
+                <?php
+                for ($i = 0; $i < $need_number; $i++) {
+                    ?>
+                    <div class="col-md-6">
+                        <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><?php echo $most_recent_need_information[$i]["user_nickname"] . ': '; ?>
+                                    <?php echo $most_recent_need_information[$i]["need_title"]; ?>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div
+                                        class="col-md-6"><?php echo substr($most_recent_need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
+                                    <div
+                                        class="col-md-6"><?php echo $most_recent_need_information[$i]["need_goods_picture_path"]; ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
     <div class="col-sm-2 col-md-3"></div>

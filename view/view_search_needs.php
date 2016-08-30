@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eswap - Unfinished Needs</title>
+    <title>Eswap - Needs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0"/>
     <meta name="format-detection" content="telephone-no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -9,11 +9,12 @@
 </head>
 <body>
 
-<?php include "navbar.php" ?>
-
 <?php
-
+include "navbar.php";
+$panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
 require_once "../medoo.php";
+
+
 try {
     $database = new medoo([
         'database_type' => 'mysql',
@@ -27,32 +28,27 @@ try {
         'port' => 3306,
     ]);
 
-    $user_to_select = $_SESSION["login_email"];
+    if (isset($_GET["firstCat"])) {
+        $firstCat = $_GET["firstCat"];
+        $needs_of_category = $database->query("select user_nickname, 
+                                                             needs_information.* 
+                                                      from needs_information join users_information 
+                                                      where user_id=need_user_id and need_state=0 and need_goods_first_class='" . $firstCat . "';")->fetchAll();
 
-    $user_information = $database->select("users_information", ["user_id",
-        "user_nickname",
-        "user_password",
-        "user_nickname",
-        "user_gender",
-        "user_area",
-        "user_phonenumber"], ["user_email" => $user_to_select])[0];
+        $need_number = count($needs_of_category);
 
-    $id = $user_information["user_id"];
-
-    $need_information = $database->select("needs_information", ["need_title",
-        "need_goods_description",
-        "need_goods_picture_path"], ["AND" => ["need_user_id" => $id, "need_state" => 0]]);
-
-    $need_number = count($need_information);
-
+    } elseif (isset($_GET["secondCat"])) {
+        $secondCat = $_GET["secondCat"];
+        $needs_of_category = $database->query("select user_nickname, 
+                                                             needs_information.* 
+                                                      from needs_information join users_information 
+                                                      where user_id=need_user_id and need_state=0 and need_goods_second_class='" . $secondCat . "';")->fetchAll();
+        $need_number = count($needs_of_category);
+    }
 } catch (Exception $exception) {
+//if database server goes wrong
     header("Location: view_message_page.php?type=serverError");
 }
-
-?>
-
-<?php
-$panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
 ?>
 
 <div class="container-fluid">
@@ -61,13 +57,13 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
-                    <?php include_once "categoryNav.php"; ?>
+                    <?php include "categoryNav.php"; ?>
                 </div>
             </div>
+            <br/>
         </div>
-        <div class="well col-sm-8 col-md-6">
+        <div class="well col-sm-8 col-md-6" style="min-height: 90%">
             <!--            在这里放这个页面的内容-->
-
             <div class="row">
                 <?php
                 for ($i = 0; $i < $need_number; $i++) {
@@ -76,16 +72,16 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                         <a href="#">
                             <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><?php echo $user_information["user_nickname"] . ': '; ?>
-                                        <?php echo $need_information[$i]["need_title"]; ?>
+                                    <h3 class="panel-title"><?php echo $needs_of_category[$i]["user_nickname"] . ': '; ?>
+                                        <?php echo $needs_of_category[$i]["need_title"]; ?>
                                     </h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div
-                                            class="col-md-6"><?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
+                                            class="col-md-6"><?php echo substr($needs_of_category[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
                                         <div
-                                            class="col-md-6"><?php echo $need_information[$i]["need_goods_picture_path"]; ?></div>
+                                            class="col-md-6"><?php echo $needs_of_category[$i]["need_goods_picture_path"]; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -96,4 +92,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
         </div>
         <div class="col-sm-2 col-md-3"></div>
     </div>
-</div>      
+</div>
+
+</body>
+</html>

@@ -9,12 +9,12 @@ $category_information = $_SESSION["category"];
         <?php
         foreach ($category_information as $first_class => $second_classes) {
         ?>
-        <li><a href="#"><?php echo $first_class; ?></a>
+        <li><a href="view_search_needs.php?firstCat=<?php echo $first_class; ?>"><?php echo $first_class; ?></a>
             <ul>
                 <?php
                 foreach ($second_classes as $key => $value){
                 ?>
-                <li><a href="#"><?php echo $value; ?></a></li>
+                <li><a href="view_search_needs.php?secondCat=<?php echo $value; ?>"><?php echo $value; ?></a></li>
                 <?php } ?>
             </ul>
         </li>

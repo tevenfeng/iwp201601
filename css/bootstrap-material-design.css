@@ -2854,10 +2854,10 @@ fieldset[disabled] .navbar .btn-link:focus {
   color: #03a9f4;
 }
 .nav-tabs {
-  background: #009688;
+
 }
 .nav-tabs > li > a {
-  color: #FFFFFF;
+  color: #000000;
   border: 0;
   margin: 0;
 }
@@ -2870,7 +2870,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .nav-tabs > li > a:focus {
   background-color: transparent !important;
   border: 0 !important;
-  color: #FFFFFF !important;
+  color: #000000 !important;
   font-weight: 500;
 }
 .nav-tabs > li.disabled > a,

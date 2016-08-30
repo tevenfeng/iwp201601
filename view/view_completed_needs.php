@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eswap - Your choice to swap things</title>
+    <title>Eswap - Finished needs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0"/>
     <meta name="format-detection" content="telephone-no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -41,7 +41,8 @@ try {
 
     $need_information = $database->select("needs_information", ["need_title",
         "need_goods_description",
-        "need_goods_picture_path"], ["AND" => ["need_user_id" => $id, "need_state" => 1]]);
+        "need_goods_picture_path",
+        "need_id"], ["AND" => ["need_user_id" => $id, "need_state" => 1]]);
 
     $need_number = count($need_information);
 
@@ -51,6 +52,9 @@ try {
 
 ?>
 
+<?php
+$panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
+?>
 
 <div class="container-fluid">
     <div class="row">
@@ -61,38 +65,34 @@ try {
                     <?php include_once "categoryNav.php"; ?>
                 </div>
             </div>
+            <br/>
         </div>
         <div class="well col-sm-8 col-md-6">
-            <!--            在这里放这个页面的内容-->
-
             <div class="row">
                 <?php
                 for ($i = 0; $i < $need_number; $i++) {
                     ?>
                     <div class="col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><?php echo $user_information["user_nickname"] . ': '; ?>
-                                    <?php echo $need_information[$i]["need_title"]; ?>
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div
-                                        class="col-md-6"><?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
-                                    <div
-                                        class="col-md-6"><?php echo $need_information[$i]["need_goods_picture_path"]; ?></div>
+                        <a href="#">
+                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><?php echo $user_information["user_nickname"] . ': '; ?>
+                                        <?php echo $need_information[$i]["need_title"]; ?>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div
+                                            class="col-md-6"><?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
+                                        <div
+                                            class="col-md-6"><?php echo $need_information[$i]["need_goods_picture_path"]; ?></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-
-
                 <?php } ?>
-
             </div>
-
-
         </div>
         <div class="col-sm-2 col-md-3"></div>
     </div>

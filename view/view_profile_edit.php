@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eswap - Profile Editing</title>
+    <title>Eswap - Profile Viewing and Editing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0"/>
     <meta name="format-detection" content="telephone-no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
