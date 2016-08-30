@@ -1,16 +1,24 @@
+<?php
+$category_information = $_SESSION["category"];
+?>
+
 <script type="text/javascript" src="/js/jquery.smartmenus.js"></script>
 <link rel='stylesheet' type='text/css' href='/css/sm-blue/sm-blue.css'>
 <div>
     <ul id="main-menu" class="sm sm-blue sm-vertical">
-        <li><a href="#">Item 1</a></li>
-        <li><a href="#">Item 2</a>
+        <?php
+        foreach ($category_information as $first_class => $second_classes) {
+        ?>
+        <li><a href="#"><?php echo $first_class; ?></a>
             <ul>
-                <li><a href="#">Item 2-1</a></li>
-                <li><a href="#">Item 2-2</a></li>
-                <li><a href="#">Item 2-3</a></li>
+                <?php
+                foreach ($second_classes as $key => $value){
+                ?>
+                <li><a href="#"><?php echo $value; ?></a></li>
+                <?php } ?>
             </ul>
         </li>
-        <li><a href="#">Item 3</a></li>
+        <?php } ?>
     </ul>
     <script>
         $(function () {

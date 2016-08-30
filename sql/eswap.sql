@@ -11,8 +11,7 @@ CREATE TABLE users_information (
   user_nickname    VARCHAR(100) NOT NULL,
   user_email       VARCHAR(100) NOT NULL UNIQUE,
   user_password    VARCHAR(100) NOT NULL,
-  #   true means female and false means male
-  user_gender      BOOLEAN,
+  user_gender      BOOLEAN, #   true means female and false means male
   user_area        VARCHAR(100),
   user_phonenumber VARCHAR(100)
 );
@@ -27,14 +26,14 @@ CREATE TABLE needs_information (
   need_id                 INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   need_user_id            INT NOT NULL,
   need_start_time         DATETIME,
-  need_state              BOOLEAN,
-  need_title              VARCHAR(100),
-  need_goods_description  VARCHAR(300),
-  need_goods_quality      INT,
+  need_state              BOOLEAN, #0 stands for uncompleted, 1 stands for completed
+  need_title              VARCHAR(200),
+  need_goods_description  VARCHAR(500),
+  need_goods_quality      INT, #range from 1 to 9
   need_goods_first_class  VARCHAR(50),
   need_goods_second_class VARCHAR(50),
   need_goods_picture_path VARCHAR(100),
-  need_goal_goods         VARCHAR(300),
+  need_goal_goods         VARCHAR(500),
   FOREIGN KEY (need_user_id) REFERENCES users_information (user_id),
   FOREIGN KEY (need_goods_first_class) REFERENCES category_information (category_first_class),
   FOREIGN KEY (need_goods_second_class) REFERENCES category_information (category_second_class)
@@ -51,14 +50,17 @@ CREATE TABLE trading_information (
 );
 
 CREATE TABLE station_message (
-  message_id           INT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  message_from_user_id INT      NOT NULL,
-  message_to_user_id   INT      NOT NULL,
-  message_time         DATETIME NOT NULL,
-  message_need_id      INT      NOT NULL,
-  message_status       INT      NOT NULL,
+  message_id            INT      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  message_from_user_id  INT      NOT NULL,
+  message_to_user_id    INT      NOT NULL,
+  message_time          DATETIME NOT NULL,
+  message_need_id       INT      NOT NULL,
+  message_status        INT      NOT NULL,
+  message_type          BOOLEAN, # 0 stands for request, 1 stands for reply
+  message_agree_request BOOLEAN, # 0 stands for denying, 1 stands for agreement
   FOREIGN KEY (message_from_user_id) REFERENCES users_information (user_id),
   FOREIGN KEY (message_to_user_id) REFERENCES users_information (user_id),
+  FOREIGN KEY (message_to_user_id) REFERENCES needs_information (need_user_id),
   FOREIGN KEY (message_need_id) REFERENCES needs_information (need_id)
 );
 
@@ -102,10 +104,14 @@ VALUES ("Sports and Outdoors", "Water Sports");
 
 INSERT INTO needs_information (need_user_id, need_start_time, need_state, need_title, need_goods_description, need_goods_quality, need_goods_first_class, need_goods_second_class, need_goods_picture_path, need_goal_goods)
 VALUES (1, '2016-08-28 19:20:01', 0, 'iPhone6s 64G for Samsung S7 edge 32G',
-        'My iPhone6s is very beautiful.asdfasjdflkasjhkoflhaqlkegjhladksfjlksadhf', 9, 'Electronics', 'Cell Phones',
-        'iPhone6s.jpg', 'S7 edge 32G, asdfjlaksdjhlashgdlkahskdghaskdjfkaldsjhaksjdf');
+        'My iPhone6s is very beautiful. My iPhone6s is very beautiful. My iPhone6s is very beautiful. My iPhone6s is very beautiful. My iPhone6s is very beautiful.',
+        9, 'Electronics', 'Cell Phones', 'iPhone6s.jpg',
+        'S7 edge 32G, My iPhone6s is very beautiful. My iPhone6s is very beautiful. My iPhone6s is very beautiful.');
 
 INSERT INTO needs_information (need_user_id, need_start_time, need_state, need_title, need_goods_description, need_goods_quality, need_goods_first_class, need_goods_second_class, need_goods_picture_path, need_goal_goods)
-VALUES (1, '2016-08-28 19:20:01', 0, 'asdfasgqawegwqeftwqerfwqerqwerqwerf',
-        'My iPhone6s is very beautiful.asdfasjdflkasjhkoflhaqlkegjhladksfjlksadhf', 1, 'Electronics', 'Cell Phones',
-        'iPhone6s.jpg', 'S7 edge 32G, asdfjlaksdjhlashgdlkahskdghaskdjfkaldsjhaksjdf');
+VALUES (1, '2016-08-28 19:20:01', 0, 'as df asgq awegwq eftw qerfw erq werqw erf',
+        'My iPhone6s is very beautiful.asd fasj dflk  asjh koflhaql ke gjhladks fjlksa dhf', 1, 'Electronics',
+        'Cell Phones', 'iPhone6s.jpg', 'S7 edge 32G, as dfjla ksd hlash gdlkah skdgha skdj fkaldsj ha ksjdf');
+
+INSERT INTO station_message (message_from_user_id, message_to_user_id, message_status, message_time, message_need_id, message_type)
+VALUES (2, 1, 0, '2016-08-28 19:25:10', 1, 0);

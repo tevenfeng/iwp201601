@@ -44,6 +44,7 @@
                     } else {
                         ?>
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="javascript:void(0)">Requests <span class="badge">3</span></a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle"
                                    href="javascript:void(0)"
@@ -54,7 +55,8 @@
                                     <li><a href="/view/view_profile_edit.php">Your profile</a></li>
                                     <li class="divider"></li>
                                     <li class="dropdown-header">Needs and Deals</li>
-                                    <li><a href="javascript:void(0)">Your needs</a></li>
+                                    <li><a href="/view/view_uncompleted_needs.php">Unfinished needs</a></li>
+                                    <li><a href="/view/view_completed_needs.php">Finished deals</a></li>
                                     <li><a href="javascript:void(0)">Your deals</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/view/function_logout.php">Logout</a></li>
