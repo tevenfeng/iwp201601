@@ -32,7 +32,7 @@ try {
         $_SESSION["login_nickname"] = $pwd_correct[0]["user_nickname"];
         $_SESSION["login_user_id"] = $pwd_correct[0]["user_id"];
 
-        $number_of_unread_messages = $database->count("station_message", ["AND" => ["message_to_user_id" => $_SESSION["login_user_id"]]]);
+        $number_of_unread_messages = $database->count("station_message", ["AND" => ["message_to_user_id" => $_SESSION["login_user_id"], "message_status"=>0]]);
 
         $_SESSION["unread_messages_number"] = $number_of_unread_messages;
 

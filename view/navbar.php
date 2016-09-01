@@ -9,7 +9,11 @@
 <script type="text/javascript" src="/js/ripples.min.js"></script>
 <script type="text/javascript" src="/js/jquery.smartmenus.js"></script>
 
-<?php session_start(); ?>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="navbar navbar-warning" role="navigation">
@@ -37,7 +41,10 @@
                     } else {
                         ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="/view/view_station_message.php">Requests <span class="badge"><?php echo $_SESSION["unread_messages_number"]; ?></span></a></li>
+                            <li><a href="/view/view_station_message.php">Requests <span
+                                        class="badge"><?php if ($_SESSION["unread_messages_number"] > 0) {
+                                            echo $_SESSION["unread_messages_number"];
+                                        } ?></span></a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle"
                                    href="javascript:void(0)"
@@ -50,7 +57,7 @@
                                     <li class="dropdown-header">Needs and Deals</li>
                                     <li><a href="/view/view_uncompleted_needs.php">Unfinished Needs</a></li>
                                     <li><a href="/view/view_completed_needs.php">Finished Needs</a></li>
-                                    <li><a href="javascript:void(0)">Your Deals</a></li>
+                                    <li><a href="/view/view_trading_information.php">Your Deals</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/view/function_logout.php">Logout</a></li>
                                 </ul>

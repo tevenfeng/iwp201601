@@ -45,7 +45,7 @@ CREATE TABLE trading_information (
   trade_first_user_id    INT,
   trade_second_user_id   INT,
   trade_start_trade_time DATETIME,
-  trade_state            BIT, # 0 stands for canceled, 1 stands for under dealing, 2 stands for deal completed
+  trade_state            TINYINT, # 0 stands for canceled, 1 stands for under dealing, 2 stands for deal completed
   FOREIGN KEY (trade_need_id) REFERENCES needs_information (need_id),
   FOREIGN KEY (trade_first_user_id) REFERENCES users_information (user_id),
   FOREIGN KEY (trade_second_user_id) REFERENCES users_information (user_id)
@@ -57,7 +57,7 @@ CREATE TABLE station_message (
   message_to_user_id    INT      NOT NULL,
   message_time          DATETIME NOT NULL,
   message_need_id       INT      NOT NULL,
-  message_status        INT      NOT NULL,
+  message_status        BOOLEAN  NOT NULL,  # 0 stands for unread messages, 1 stands for read messages
   message_type          BOOLEAN, # 0 stands for request, 1 stands for reply
   message_agree_request BOOLEAN, # 0 stands for denying, 1 stands for agreement
   FOREIGN KEY (message_from_user_id) REFERENCES users_information (user_id),
@@ -148,4 +148,4 @@ VALUES (1, '2016-08-28 19:20:20', 1, 'I wanna exchange my pretty fan for somethi
 INSERT INTO station_message (message_from_user_id, message_to_user_id, message_status, message_time, message_need_id, message_type)
 VALUES (2, 1, 0, '2016-08-28 19:25:10', 1, 0);
 INSERT INTO station_message (message_from_user_id, message_to_user_id, message_status, message_time, message_need_id, message_type)
-VALUES (2, 1, 1, '2016-08-28 19:25:20', 1, 0);
+VALUES (2, 1, 1, '2016-08-28 19:25:20', 2, 0);

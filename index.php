@@ -61,7 +61,7 @@ try {
     $category_information = $_SESSION["category"];
 
 } catch (Exception $exception) {
-    header("Location: view_message_page.php?type=serverError");
+    header("Location: /view/view_message_page.php?type=serverError");
 }
 ?>
 

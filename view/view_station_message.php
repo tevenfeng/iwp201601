@@ -71,7 +71,53 @@
 </head>
 <body>
 
-<?php include "navbar.php" ?>
+<?php
+include "navbar.php";
+
+require_once "../medoo.php";
+try {
+    $database = new medoo([
+        'database_type' => 'mysql',
+        'database_name' => 'eswap',
+        'server' => 'localhost',
+        'username' => 'root',
+        'password' => 'root',
+        'charset' => 'utf8',
+
+        // [optional]
+        'port' => 3306,
+    ]);
+
+    if (isset($_SESSION["login_user_id"])) {
+        $user_id = $_SESSION["login_user_id"];
+    }
+
+    $unread_messages = $database->select("station_message", "*", ["AND" => ["message_to_user_id" => $user_id, "message_status" => 0]]);
+
+    $unread_message_user_nicknames = array();
+    $unread_message_need_title = array();
+
+    foreach ($unread_messages as $message) {
+        $unread_message_user_nicknames[$message["message_from_user_id"]] = $database->select("users_information", ["user_nickname"], ["user_id" => $message["message_from_user_id"]])[0]["user_nickname"];
+        $unread_message_need_title[$message["message_need_id"]] = $database->select("needs_information", ["need_title"], ["need_id" => $message["message_need_id"]])[0]["need_title"];
+    }
+
+    $all_messages = $database->select("station_message", "*", ["message_to_user_id" => $user_id]);
+
+    $all_message_user_nicknames = array();
+    $all_message_need_title = array();
+
+    foreach ($all_messages as $message) {
+        $all_message_user_nicknames[$message["message_from_user_id"]] = $database->select("users_information", ["user_nickname"], ["user_id" => $message["message_from_user_id"]])[0]["user_nickname"];
+        $all_message_need_title[$message["message_need_id"]] = $database->select("needs_information", ["need_title"], ["need_id" => $message["message_need_id"]])[0]["need_title"];
+    }
+
+} catch (Exception $exception) {
+    //if database server goes wrong
+    header("Location: view_message_page.php?type=serverError");
+}
+
+?>
 
 <div class="container-fluid">
     <div class="row">
@@ -82,7 +128,9 @@
                     <div class="card">
                         <ul class="nav nav-tabs nav-stacked" style="margin-bottom: 15px;">
                             <li class="active"><a href="#unread" data-toggle="tab">Unread <span
-                                        class="badge"><?php echo $_SESSION["unread_messages_number"]; ?></span></a></li>
+                                        class="badge"><?php if ($_SESSION["unread_messages_number"] > 0) {
+                                            echo $_SESSION["unread_messages_number"];
+                                        } ?></span></a></li>
                             <li><a href="#all" data-toggle="tab">All</a></li>
                         </ul>
                     </div>
@@ -93,42 +141,54 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="unread">
                     <div class="list-group">
-                        <a href="#">
-                            <div class="list-group-item">
-                                <div class="row-content">
-                                    <div class="action-secondary"><i class="material-icons">info</i></div>
-                                    <h4 class="list-group-item-heading">Tile with an icon</h4>
-
-                                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget
-                                        metus.</p>
+                        <?php
+                        foreach ($unread_messages as $unread_message) {
+                            ?>
+                            <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>&unread=true">
+                                <div class="list-group-item">
+                                    <div class="row-content">
+                                        <div class="action-secondary"><i class="material-icons">info</i></div>
+                                        <h4 class="list-group-item-heading">Message from
+                                            <?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>
+                                        </h4>
+                                        <p class="list-group-item-text">I want to have a further talk with you about
+                                            your thread
+                                            "<?php echo $unread_message_need_title[$unread_message["message_need_id"]]; ?>
+                                            "</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="all">
                     <div class="list-group">
-                        <a href="#">
-                            <div class="list-group-item">
-                                <div class="row-content">
-                                    <div class="action-secondary"><i class="material-icons">info</i></div>
-                                    <h4 class="list-group-item-heading">Tile with an icon</h4>
-
-                                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget
-                                        metus.</p>
+                        <?php
+                        foreach ($all_messages as $all_message) {
+                            ?>
+                            <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                <div class="list-group-item">
+                                    <div class="row-content">
+                                        <?php
+                                        if ($all_message["message_status"] == 0) {
+                                            ?>
+                                            <div class="action-secondary"><i class="material-icons">info</i></div>
+                                        <?php } ?>
+                                        <h4 class="list-group-item-heading">Message from
+                                            <?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>
+                                        </h4>
+                                        <p class="list-group-item-text">I want to have a further talk with you about
+                                            your thread
+                                            "<?php echo $all_message_need_title[$all_message["message_need_id"]]; ?>
+                                            "</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="list-group-item">
-                                <div class="row-content">
-                                    <h4 class="list-group-item-heading">Tile with an icon</h4>
-
-                                    <p class="list-group-item-text">Donec id elit non mi porta gravida at eget
-                                        metus.</p>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
