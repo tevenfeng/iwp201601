@@ -107,21 +107,23 @@ try {
                 for ($i = 0; $i < $need_number; $i++) {
                     ?>
                     <div class="col-md-6">
-                        <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><?php echo $most_recent_need_information[$i]["user_nickname"] . ': '; ?>
-                                    <?php echo $most_recent_need_information[$i]["need_title"]; ?>
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div
-                                        class="col-md-6"><?php echo substr($most_recent_need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
-                                    <div
-                                        class="col-md-6"><?php echo $most_recent_need_information[$i]["need_goods_picture_path"]; ?></div>
+                        <a href="/view/view_goods_information.php?need_id=<?php echo $most_recent_need_information[$i]["need_id"]; ?>">
+                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><?php echo $most_recent_need_information[$i]["user_nickname"] . ': '; ?>
+                                        <?php echo $most_recent_need_information[$i]["need_title"]; ?>
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div
+                                            class="col-md-6"><?php echo substr($most_recent_need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
+                                        <div
+                                            class="col-md-6"><?php echo $most_recent_need_information[$i]["need_goods_picture_path"]; ?></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 <?php } ?>
             </div>

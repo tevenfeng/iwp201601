@@ -143,22 +143,60 @@ try {
                     <div class="list-group">
                         <?php
                         foreach ($unread_messages as $unread_message) {
-                            ?>
-                            <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>?message_need_id=<?php echo $unread_message["message_need_id"]; ?>&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>&unread=true">
-                                <div class="list-group-item">
-                                    <div class="row-content">
-                                        <div class="action-secondary"><i class="material-icons">info</i></div>
-                                        <h4 class="list-group-item-heading">Message from
-                                            <?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>
-                                        </h4>
-                                        <p class="list-group-item-text">I want to have a further talk with you about
-                                            your thread
-                                            "<?php echo $unread_message_need_title[$unread_message["message_need_id"]]; ?>
-                                            "</p>
+                            if ($unread_message["message_type"] == 0) {
+                                ?>
+                                <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>&message_need_id=<?php echo $unread_message["message_need_id"]; ?>&unread=true&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>">
+                                    <div class="list-group-item">
+                                        <div class="row-content">
+                                            <div class="action-secondary"><i class="material-icons">info</i></div>
+                                            <h4 class="list-group-item-heading">Message from
+                                                <?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>
+                                            </h4>
+                                            <p class="list-group-item-text">I want to have a further talk with you about
+                                                your thread
+                                                "<?php echo $unread_message_need_title[$unread_message["message_need_id"]]; ?>
+                                                "</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <?php
+                                </a>
+                                <?php
+                            } else if (($unread_message["message_type"] == 1) && ($unread_message["message_agree_request"] == 0)) {
+                                ?>
+                                <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>&message_need_id=<?php echo $unread_message["message_need_id"]; ?>&unread=true&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>">
+                                    <div class="list-group-item">
+                                        <div class="row-content">
+                                            <div class="action-secondary"><i class="material-icons">info</i></div>
+                                            <h4 class="list-group-item-heading">Message from
+                                                <?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>
+                                            </h4>
+                                            <p class="list-group-item-text">He/She denied your request to have a further
+                                                talk with hime/her about
+                                                the thread
+                                                "<?php echo $unread_message_need_title[$unread_message["message_need_id"]]; ?>
+                                                "</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            } else if (($unread_message["message_type"] == 1) && ($unread_message["message_agree_request"]) == 1) {
+                                ?>
+                                <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>&message_need_id=<?php echo $unread_message["message_need_id"]; ?>&unread=true&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>">
+                                    <div class="list-group-item">
+                                        <div class="row-content">
+                                            <div class="action-secondary"><i class="material-icons">info</i></div>
+                                            <h4 class="list-group-item-heading">Message from
+                                                <?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>
+                                            </h4>
+                                            <p class="list-group-item-text">He/She agreed with your request to have a
+                                                further talk with hime/her about
+                                                the thread
+                                                "<?php echo $unread_message_need_title[$unread_message["message_need_id"]]; ?>
+                                                "</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            }
                         }
                         ?>
                     </div>
@@ -167,26 +205,72 @@ try {
                     <div class="list-group">
                         <?php
                         foreach ($all_messages as $all_message) {
-                            ?>
-                            <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>?message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
-                                <div class="list-group-item">
-                                    <div class="row-content">
-                                        <?php
-                                        if ($all_message["message_status"] == 0) {
-                                            ?>
-                                            <div class="action-secondary"><i class="material-icons">info</i></div>
-                                        <?php } ?>
-                                        <h4 class="list-group-item-heading">Message from
-                                            <?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>
-                                        </h4>
-                                        <p class="list-group-item-text">I want to have a further talk with you about
-                                            your thread
-                                            "<?php echo $all_message_need_title[$all_message["message_need_id"]]; ?>
-                                            "</p>
+                            if ($all_message["message_type"] == 0) {
+                                ?>
+                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                    <div class="list-group-item">
+                                        <div class="row-content">
+                                            <?php
+                                            if ($all_message["message_status"] == 0) {
+                                                ?>
+                                                <div class="action-secondary"><i class="material-icons">info</i></div>
+                                            <?php } ?>
+                                            <h4 class="list-group-item-heading">Message from
+                                                <?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>
+                                            </h4>
+                                            <p class="list-group-item-text">I want to have a further talk with you about
+                                                your thread
+                                                "<?php echo $all_message_need_title[$all_message["message_need_id"]]; ?>
+                                                "</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <?php
+                                </a>
+                                <?php
+                            } else if (($all_message["message_agree_request"] == 0) && ($all_message["message_type"] == 1)) {
+                                ?>
+                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                    <div class="list-group-item">
+                                        <div class="row-content">
+                                            <?php
+                                            if ($all_message["message_status"] == 0) {
+                                                ?>
+                                                <div class="action-secondary"><i class="material-icons">info</i></div>
+                                            <?php } ?>
+                                            <h4 class="list-group-item-heading">Message from
+                                                <?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>
+                                            </h4>
+                                            <p class="list-group-item-text">He/She denied your request to have a further
+                                                talk with hime/her about
+                                                the thread
+                                                "<?php echo $all_message_need_title[$all_message["message_need_id"]]; ?>
+                                                "</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            } else if (($all_message["message_agree_request"] == 1) && ($all_message["message_type"] == 1)) {
+                                ?>
+                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                    <div class="list-group-item">
+                                        <div class="row-content">
+                                            <?php
+                                            if ($all_message["message_status"] == 0) {
+                                                ?>
+                                                <div class="action-secondary"><i class="material-icons">info</i></div>
+                                            <?php } ?>
+                                            <h4 class="list-group-item-heading">Message from
+                                                <?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>
+                                            </h4>
+                                            <p class="list-group-item-text">He/She agreed with your request to have a
+                                                further talk with hime/her about
+                                                the thread
+                                                "<?php echo $all_message_need_title[$all_message["message_need_id"]]; ?>
+                                                "</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <?php
+                            }
                         }
                         ?>
                     </div>

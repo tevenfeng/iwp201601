@@ -11,6 +11,58 @@
 
 <?php include "navbar.php" ?>
 
+<?php
+
+if(isset($_GET['need_id']))
+{
+ $goods_id= $_GET['need_id'];
+}
+
+//$goods_id = '1';
+require_once "../medoo.php";
+try {
+    $database = new medoo([
+        'database_type' => 'mysql',
+        'database_name' => 'eswap',
+        'server' => 'localhost',
+        'username' => 'root',
+        'password' => 'root',
+        'charset' => 'utf8',
+
+        // [optional]
+        'port' => 3306,
+    ]);
+
+    $user_to_select = $_SESSION["login_email"];
+
+    $need_information = $database->select("needs_information", ["need_id",
+        "need_user_id",
+        "need_start_time",
+        "need_state",
+        "need_title",
+        "need_goods_description",
+        "need_goods_quality",
+        "need_goods_first_class",
+        "need_goods_second_class",
+        "need_goods_picture_path",
+        "need_goal_goods"], ["need_id" => $goods_id])[0];
+
+    $user_information = $database->select("users_information", ["user_id",
+        "user_nickname",
+        "user_password",
+        "user_nickname",
+        "user_gender",
+        "user_area",
+        "user_phonenumber"], ["user_id" => $need_information["need_user_id"]])[0];
+
+    $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
+
+} catch (Exception $exception) {
+    header("Location: view_message_page.php?type=serverError");
+}
+
+?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2 col-md-3">
@@ -20,95 +72,71 @@
                     <?php include "categoryNav.php"; ?>
                 </div>
             </div>
-            <br />
+            <br/>
         </div>
-        <div class="well col-sm-8 col-md-6">
-<!--            在这里放这个页面的内容-->
-            <h1>Title</h1>
+        <div class="col-sm-8 col-md-6">
+            <!--            在这里放这个页面的内容-->
 
-            <div class="panel panel-primary">
+            <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Picture</h3>
+                    <h3 class="panel-title"><?php echo $need_information["need_title"] ?>
+                    </h3>
                 </div>
                 <div class="panel-body">
-                    <img src="1.jpg" alt="goods_picture">
-                </div>
-            </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-6"><?php echo $need_information["need_goods_picture_path"] ?></div>
+                            <div class="col-md-6">
+                                <div class="text-primary" style="font-family:verdana">
+                                    goods sponsor:<?php echo $user_information["user_nickname"] ?>
+                                </div>
+                                </br>
+                                <div class="text-warning" style="font-family:verdana">
+                                    goods deal start time:<?php echo $need_information["need_start_time"] ?>
+                                </div>
+                                </br>
+                                <div class="text-danger" style="font-family:verdana">
+                                    goods
+                                    class:<?php echo $need_information["need_goods_first_class"] . '-' ?><?php echo $need_information["need_goods_second_class"] ?>
+                                </div>
+                                </br>
+                                <div class="text-success" style="font-family:verdana">
+                                    goods state:<?php echo $need_information["need_goods_quality"] ?>
+                                </div>
+                                </br>
+                                <div>
+                                    <a href="javascript:void(0)" class="btn btn-raised btn-warning">apply for
+                                        dealing</a>
+                                </div>
+                                </br>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">User</h3>
-                </div>
-                <div class="panel-body">
-                    user_name
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-6" style="background-color:#1AD42A"></div>
+                        <div class="col-md-6" style="background-color:#1AD42A"></div>
+                    </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Start time</h3>
-                </div>
-                <div class="panel-body">
-                    start_time
-                </div>
-            </div>
+                    <div class="text-muted" style="font-family:verdana">
+                        goods description:<?php echo $need_information["need_goods_description"] ?>
+                    </div>
+                    </br>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Start time</h3>
-                </div>
-                <div class="panel-body">
-                    start_time
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-6" style="background-color:#1AD42A"></div>
+                        <div class="col-md-6" style="background-color:#1AD42A"></div>
+                    </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">State</h3>
-                </div>
-                <div class="panel-body">
-                    <span class="label label-default">Completed</span>
-                    <span class="label label-success">Uncompleted</span>
-                </div>
-            </div>
+                    <div class="text-muted" style="font-family:verdana">
+                        goal goods description:<?php echo $need_information["need_goal_goods"] ?>
+                    </div>
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Description</h3>
-                </div>
-                <div class="panel-body">
-                    description
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Quality</h3>
-                </div>
-                <div class="panel-body">
-                    quality
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Class</h3>
-                </div>
-                <div class="panel-body">
-                    first_class second_class
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">What I need</h3>
-                </div>
-                <div class="panel-body">
-                    goal_goods
                 </div>
             </div>
 
         </div>
+
         <div class="col-sm-2 col-md-3"></div>
     </div>
 </div>

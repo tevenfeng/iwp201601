@@ -69,7 +69,7 @@ try {
                 for ($i = 0; $i < $need_number; $i++) {
                     ?>
                     <div class="col-md-6">
-                        <a href="#">
+                        <a href="view_goods_information.php?need_id=<?php echo $needs_of_category[$i]["need_id"]; ?>">
                             <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><?php echo $needs_of_category[$i]["user_nickname"] . ': '; ?>
