@@ -38,7 +38,9 @@ try {
         "message_agree_request"=>1
     ]);
 
+    header("Location: view_station_message.php");
+
 } catch (Exception $exception) {
     //if database server goes wrong
-    header("Location: view_message_page.php?type=serverError");
+
 }
