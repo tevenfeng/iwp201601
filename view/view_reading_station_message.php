@@ -1,12 +1,52 @@
 <?php
 session_start();
-if(isset($_GET["from"])){
+
+include "../medoo.php";
+
+try {
+    $database = new medoo([
+        'database_type' => 'mysql',
+        'database_name' => 'eswap',
+        'server' => 'localhost',
+        'username' => 'root',
+        'password' => 'root',
+        'charset' => 'utf8',
+
+        // [optional]
+        'port' => 3306,
+    ]);
+} catch (Exception $exception) {
+    //if database server goes wrong
+    header("Location: view_message_page.php?type=serverError");
+}
+
+if (isset($_GET["message_id"])) {
+    $message_id = $_GET["message_id"];
+}
+
+if (isset($_GET["from"])) {
     $from = $_GET["from"];
 }
 
-if(isset($_GET["unread"])) {
-    if($_SESSION["unread_messages_number"]>0){
+if (isset($_GET["message_need_id"])) {
+    $message_need_id = $_GET["message_need_id"];
+}
+
+if (isset($_GET["unread"])) {
+    if ($_SESSION["unread_messages_number"] > 0) {
         $_SESSION["unread_messages_number"]--;
+
+        try {
+
+            $database->update("station_message", ["message_status" => 1], ["message_id" =>$message_id]);
+
+
+
+        } catch (Exception $exception) {
+            //if database server goes wrong
+            header("Location: view_message_page.php?type=serverError");
+        }
+
     }
 }
 ?>
@@ -27,9 +67,20 @@ if(isset($_GET["unread"])) {
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2 col-md-3"></div>
-        <div class="well col-sm-8 col-md-6">
-            <!--            在这里放这个页面的内容-->
-
+        <div class="col-sm-8 col-md-6">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Body</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn href=" #">DISMISS</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-2 col-md-3"></div>
     </div>

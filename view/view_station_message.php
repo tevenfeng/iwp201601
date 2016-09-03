@@ -144,7 +144,7 @@ try {
                         <?php
                         foreach ($unread_messages as $unread_message) {
                             ?>
-                            <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>&unread=true">
+                            <a href="view_reading_station_message.php?message_id=<?php echo $unread_message["message_id"]; ?>?message_need_id=<?php echo $unread_message["message_need_id"]; ?>&from=<?php echo $unread_message_user_nicknames[$unread_message["message_from_user_id"]]; ?>&unread=true">
                                 <div class="list-group-item">
                                     <div class="row-content">
                                         <div class="action-secondary"><i class="material-icons">info</i></div>
@@ -168,7 +168,7 @@ try {
                         <?php
                         foreach ($all_messages as $all_message) {
                             ?>
-                            <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                            <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>?message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
                                 <div class="list-group-item">
                                     <div class="row-content">
                                         <?php
