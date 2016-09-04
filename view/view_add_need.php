@@ -25,8 +25,8 @@
                         <div class="form-group is-empty">
                             <label for="title" class="col-md-2 control-label">Title</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="title" placeholder="Title">
-                                <span class="help-block">One sentence to describe your need.</span>
+                                <input type="text" class="form-control" id="title"
+                                       placeholder="One sentence to describe your need">
                             </div>
                         </div>
 
@@ -42,23 +42,40 @@
                             <label for="textArea" class="col-md-2 control-label">Description</label>
                             <div class="col-md-10">
                                 <textarea class="form-control" rows="3" id="textArea"></textarea>
-                                <span class="help-block">Please write something to describe your goods.</span>
+                                <span
+                                    class="help-block">Please write something to describe the goods you want to swap.</span>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="form-group is-empty col-md-6">
-                                <label for="firstClass">test select</label>
-                                <select id="firstClass" name="firstClass" class="select form-control"
+                        <div class="form-group is-empty">
+                            <label for="condition" class="col-md-2 control-label">Condition</label>
+                            <div class="col-md-10">
+                                <select id="condition" name="firstClass" class="select form-control"
                                         onchange="onChange()">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
                                 </select>
                             </div>
+                        </div>
 
-                            <div class="form-group is-empty col-md-6">
-                                <label for="secondClass">test select</label>
-                                <select id="secondClass" name="secondClass" class="select form-control">
-                                </select>
-                            </div>
+                        <div class="form-group is-empty col-md-6">
+                            <label for="firstClass">test select</label>
+                            <select id="firstClass" name="firstClass" class="select form-control"
+                                    onchange="onChange()">
+                            </select>
+                        </div>
+
+                        <div class="form-group is-empty col-md-6">
+                            <label for="secondClass">test select</label>
+                            <select id="secondClass" name="secondClass" class="select form-control">
+                            </select>
                         </div>
 
                         <script src="/js/jquery.dropdown.js"></script>
