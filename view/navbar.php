@@ -52,6 +52,8 @@ if (!isset($_SESSION)) {
                                    data-target="#"><?php echo $_SESSION["login_nickname"]; ?>
                                     <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
+                                    <li><a href="/view/view_add_need.php">Post My Need</a></li>
+                                    <li class="divider"></li>
                                     <li><a href="/view/view_profile_edit.php">Your Profile</a></li>
                                     <li class="divider"></li>
                                     <li class="dropdown-header">Needs and Deals</li>

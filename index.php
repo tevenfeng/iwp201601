@@ -58,7 +58,7 @@ try {
 
     $_SESSION["category"] = $first_class;
 
-    $category_information = $_SESSION["category"];
+    var_dump($category_information = $_SESSION["category"]);
 
 } catch (Exception $exception) {
     header("Location: /view/view_message_page.php?type=serverError");
