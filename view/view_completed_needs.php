@@ -39,7 +39,8 @@ try {
 
     $id = $user_information["user_id"];
 
-    $need_information = $database->select("needs_information", ["need_title",
+    $need_information = $database->select("needs_information", ["need_id",
+        "need_title",
         "need_goods_description",
         "need_goods_picture_path",
         "need_id"], ["AND" => ["need_user_id" => $id, "need_state" => 1]]);
@@ -49,7 +50,6 @@ try {
 } catch (Exception $exception) {
     header("Location: view_message_page.php?type=serverError");
 }
-
 ?>
 
 <?php
@@ -73,7 +73,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                 for ($i = 0; $i < $need_number; $i++) {
                     ?>
                     <div class="col-md-6">
-                        <a href="#">
+                        <a href="/view/view_goods_information.php?need_id=<?php echo $need_information[$i]["need_id"]; ?>">
                             <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><?php echo $user_information["user_nickname"] . ': '; ?>

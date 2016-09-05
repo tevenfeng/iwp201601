@@ -26,7 +26,7 @@
                             <label for="title" class="col-md-2 control-label">Title</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="title"
-                                       placeholder="One sentence to describe your need">
+                                       name="title" placeholder="One sentence to describe your need" required>
                             </div>
                         </div>
 
@@ -34,24 +34,14 @@
                             <label for="inputFile" class="col-md-2 control-label">Photo</label>
                             <div class="col-md-10">
                                 <input type="text" readonly="" class="form-control" placeholder="Uploading Photos">
-                                <input type="file" id="inputFile" multiple="">
-                            </div>
-                        </div>
-
-                        <div class="form-group is-empty">
-                            <label for="textArea" class="col-md-2 control-label">Description</label>
-                            <div class="col-md-10">
-                                <textarea class="form-control" rows="3" id="textArea"></textarea>
-                                <span
-                                    class="help-block">Please write something to describe the goods you want to swap.</span>
+                                <input type="file" id="inputFile" name="inputFile" multiple="" accept="image/*" required>
                             </div>
                         </div>
 
                         <div class="form-group is-empty">
                             <label for="condition" class="col-md-2 control-label">Condition</label>
                             <div class="col-md-10">
-                                <select id="condition" name="firstClass" class="select form-control"
-                                        onchange="onChange()">
+                                <select id="condition" name="condition" class="select form-control" required>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -65,17 +55,35 @@
                             </div>
                         </div>
 
+                        <div class="form-group is-empty">
+                            <label for="textArea" class="col-md-2 control-label">Description</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" id="textArea" name="description" required></textarea>
+                                <span
+                                    class="help-block">Please write something to describe the goods you want to swap.</span>
+                            </div>
+                        </div>
+
                         <div class="form-group is-empty col-md-6">
                             <label for="firstClass">test select</label>
                             <select id="firstClass" name="firstClass" class="select form-control"
-                                    onchange="onChange()">
+                                    onchange="onChange()" required>
                             </select>
                         </div>
 
                         <div class="form-group is-empty col-md-6">
                             <label for="secondClass">test select</label>
-                            <select id="secondClass" name="secondClass" class="select form-control">
+                            <select id="secondClass" name="secondClass" class="select form-control" required>
                             </select>
+                        </div>
+
+                        <div class="form-group is-empty">
+                            <label for="textArea" class="col-md-2 control-label">Need Goods Description</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" id="textArea" name="need_description" required></textarea>
+                                <span
+                                    class="help-block">Please write something to describe the goods you want to get.</span>
+                            </div>
                         </div>
 
                         <script src="/js/jquery.dropdown.js"></script>

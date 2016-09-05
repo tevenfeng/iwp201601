@@ -207,7 +207,7 @@ try {
                         foreach ($all_messages as $all_message) {
                             if ($all_message["message_type"] == 0) {
                                 ?>
-                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?><?php if($all_message["message_status"] == 0) {echo '&unread=true';}?>">
                                     <div class="list-group-item">
                                         <div class="row-content">
                                             <?php
@@ -228,7 +228,7 @@ try {
                                 <?php
                             } else if (($all_message["message_agree_request"] == 0) && ($all_message["message_type"] == 1)) {
                                 ?>
-                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?><?php if($all_message["message_status"] == 0) {echo '&unread=true';}?>">
                                     <div class="list-group-item">
                                         <div class="row-content">
                                             <?php
@@ -250,7 +250,7 @@ try {
                                 <?php
                             } else if (($all_message["message_agree_request"] == 1) && ($all_message["message_type"] == 1)) {
                                 ?>
-                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?>">
+                                <a href="view_reading_station_message.php?message_id=<?php echo $all_message["message_id"]; ?>&message_need_id=<?php echo $all_message["message_need_id"]; ?>&from=<?php echo $all_message_user_nicknames[$all_message["message_from_user_id"]]; ?><?php if($all_message["message_status"] == 0) {echo '&unread=true';}?>">
                                     <div class="list-group-item">
                                         <div class="row-content">
                                             <?php

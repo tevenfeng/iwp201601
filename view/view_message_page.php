@@ -26,6 +26,13 @@ if ($type === "signinWrong") {
     $messageType = "Succeed";
     $messageContent = 'Your profile has been updated successfully! Click "DISMISS" to go back.';
     $action = "view_profile_edit.php";
+} else if ($type == "addNeedSuccess") {
+    if (isset($_GET["need_id"])) {
+        $need_id = $_GET["need_id"];
+    }
+    $messageType = "Succeed";
+    $messageContent = 'You have successfully added a new post, now click "DISMISS" to see your post.';
+    $action = "/";
 }
 
 ?>
