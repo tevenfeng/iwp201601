@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Eswap - Add a New Need</title>
+    <title>Eswap - Edit a New Need</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0"/>
     <meta name="format-detection" content="telephone-no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -10,7 +10,11 @@
 </head>
 <body>
 
-<?php include "navbar.php" ?>
+<?php
+include "navbar.php";
+$need_id = $_GET["need_id"];
+
+?>
 
 <div class="container-fluid">
     <div class="row">
@@ -58,7 +62,8 @@
                         <div class="form-group is-empty">
                             <label for="textArea" class="col-md-2 control-label">Description</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" rows="3" id="textArea" name="description" required></textarea>
+                                <textarea class="form-control" rows="3" id="textArea" name="description"
+                                          required></textarea>
                                 <span
                                     class="help-block">Please write something to describe the goods you want to swap.</span>
                             </div>
@@ -80,7 +85,8 @@
                         <div class="form-group is-empty">
                             <label for="textArea" class="col-md-2 control-label">Need Goods Description</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" rows="3" id="textArea" name="need_description" required></textarea>
+                                <textarea class="form-control" rows="3" id="textArea" name="need_description"
+                                          required></textarea>
                                 <span
                                     class="help-block">Please write something to describe the goods you want to get.</span>
                             </div>

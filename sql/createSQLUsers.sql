@@ -36,12 +36,12 @@ insert into mysql.user(Host,User,Password) values("%","iwp201608",password("iwp2
 insert into mysql.user(Host,User,Password) values("%","iwp201609",password("iwp201609"));
 insert into mysql.user(Host,User,Password) values("%","iwp201610",password("iwp201610"));
 
-grant all privileges on iwp201602.* to iwp201602@localhost identified by 'iwp201602';
-grant all privileges on iwp201603.* to iwp201603@localhost identified by 'iwp201603';
-grant all privileges on iwp201604.* to iwp201604@localhost identified by 'iwp201604';
-grant all privileges on iwp201605.* to iwp201605@localhost identified by 'iwp201605';
-grant all privileges on iwp201606.* to iwp201606@localhost identified by 'iwp201606';
-grant all privileges on iwp201607.* to iwp201607@localhost identified by 'iwp201607';
-grant all privileges on iwp201608.* to iwp201608@localhost identified by 'iwp201608';
-grant all privileges on iwp201609.* to iwp201609@localhost identified by 'iwp201609';
-grant all privileges on iwp201610.* to iwp201610@localhost identified by 'iwp201610';
+grant all privileges on iwp201602.* to iwp201602@"%" identified by 'iwp201602';
+grant all privileges on iwp201603.* to iwp201603@"%" identified by 'iwp201603';
+grant all privileges on iwp201604.* to iwp201604@"%" identified by 'iwp201604';
+grant all privileges on iwp201605.* to iwp201605@"%" identified by 'iwp201605';
+grant all privileges on iwp201606.* to iwp201606@"%" identified by 'iwp201606';
+grant all privileges on iwp201607.* to iwp201607@"%" identified by 'iwp201607';
+grant all privileges on iwp201608.* to iwp201608@"%" identified by 'iwp201608';
+grant all privileges on iwp201609.* to iwp201609@"%" identified by 'iwp201609';
+grant all privileges on iwp201610.* to iwp201610@"%" identified by 'iwp201610';
