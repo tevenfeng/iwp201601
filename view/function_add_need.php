@@ -6,6 +6,11 @@
  * Time: 20:46
  */
 
+function get_extension($file_path)
+{
+    return end(explode('.', $file_path));
+}
+
 session_start();
 require_once "../medoo.php";
 
@@ -21,20 +26,23 @@ $get_secondclass = $_POST["secondClass"];
 date_default_timezone_set('Asia/Shanghai');
 $get_time = date("Y-m-d H:i:s");
 
-var_dump($files = $_FILES["file"]);
+$files = $_FILES["file"];
 $number_of_photos = count($files["name"]);
+
+$number_of_photos_exist_for_user = count(glob($get_user_id.""));
 
 $complete_path_to_photo = array();
 
 for ($i = 0; $i < $number_of_photos; $i++) {
-    if(move_uploaded_file($files["tmp_name"][$i], $photoBaseDir.$files["name"][$i])){
-        $complete_path_to_photo[$i] = $photoBaseDir.$files["name"][$i];
+    $ext = get_extension($files["name"][$i]);
+    $count = count(glob($photoBaseDir.$get_user_id.'_*'));
+
+    if(move_uploaded_file($files["tmp_name"][$i], $photoBaseDir.$get_user_id.'_'.$count.'.'.$ext)){
+        $complete_path_to_photo[$i] = $photoBaseDir.$get_user_id.'_'.$count.'.'.$ext;
     }
 }
 
-var_dump($complete_path_to_photo);
-
-//$photo_json = json_encode($get_photo);
+$photo_json = json_encode($complete_path_to_photo);
 
 try {
     // connect to db
@@ -50,21 +58,21 @@ try {
         'port' => 3306,
     ]);
 
-//    $database->insert("needs_information", [
-//            "need_user_id" => $get_user_id,
-//            "need_start_time" => $get_time,
-//            "need_state" => '0',
-//            "need_title" => $get_title,
-//            "need_goods_description" => $get_description,
-//            "need_goods_quality" => $get_condition,
-//            "need_goods_first_class" => $get_firstclass,
-//            "need_goods_second_class" => $get_secondclass,
-//            "need_goods_picture_path" => $photo_json,
-//            "need_goal_goods" => $get_need_description,
-//        ]);
+    $database->insert("needs_information", [
+            "need_user_id" => $get_user_id,
+            "need_start_time" => $get_time,
+            "need_state" => '0',
+            "need_title" => $get_title,
+            "need_goods_description" => $get_description,
+            "need_goods_quality" => $get_condition,
+            "need_goods_first_class" => $get_firstclass,
+            "need_goods_second_class" => $get_secondclass,
+            "need_goods_picture_path" => $photo_json,
+            "need_goal_goods" => $get_need_description,
+        ]);
 
     // register succeeded, go to message page
-    //header("Location: view_message_page.php?type=addNeedSuccess");
+    header("Location: view_message_page.php?type=addNeedSuccess");
 
 } catch (Exception $exception) {
     //if database server goes wrong, go to error page

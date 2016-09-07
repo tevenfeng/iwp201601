@@ -32,7 +32,7 @@ CREATE TABLE needs_information (
   need_goods_quality      INT, #range from 1 to 9
   need_goods_first_class  VARCHAR(50),
   need_goods_second_class VARCHAR(50),
-  need_goods_picture_path VARCHAR(100),
+  need_goods_picture_path VARCHAR(1000),
   need_goal_goods         VARCHAR(500),
   FOREIGN KEY (need_user_id) REFERENCES users_information (user_id),
   FOREIGN KEY (need_goods_first_class) REFERENCES category_information (category_first_class),
