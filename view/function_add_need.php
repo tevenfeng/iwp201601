@@ -9,7 +9,7 @@
 session_start();
 require_once "../medoo.php";
 
-$photoBaseDir = '/iwp201601/images/goods_photos/';
+$photoBaseDir = '/home/iwp201601/images/goods_photos/';
 
 $get_user_id = trim($_SESSION["login_user_id"]);
 $get_title = trim($_POST["title"]);
