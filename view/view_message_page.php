@@ -33,6 +33,10 @@ if ($type === "signinWrong") {
     $messageType = "Succeed";
     $messageContent = 'You have successfully added a new post, now click "DISMISS" to see your post.';
     $action = "/";
+}else if($type=="applySuccess"){
+    $messageContent="You've successfully applied for the need! Please wait for reply!";
+    $messageType="Succeed";
+    $action="#";
 }
 
 ?>

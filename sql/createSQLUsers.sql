@@ -25,6 +25,9 @@ COLLATE 'utf8_general_ci';
 CREATE DATABASE iwp201610
 CHARACTER SET 'utf8'
 COLLATE 'utf8_general_ci';
+CREATE DATABASE iwp201611
+CHARACTER SET 'utf8'
+COLLATE 'utf8_general_ci';
 
 insert into mysql.user(Host,User,Password) values("%","iwp201602",password("iwp201602"));
 insert into mysql.user(Host,User,Password) values("%","iwp201603",password("iwp201603"));
@@ -35,6 +38,7 @@ insert into mysql.user(Host,User,Password) values("%","iwp201607",password("iwp2
 insert into mysql.user(Host,User,Password) values("%","iwp201608",password("iwp201608"));
 insert into mysql.user(Host,User,Password) values("%","iwp201609",password("iwp201609"));
 insert into mysql.user(Host,User,Password) values("%","iwp201610",password("iwp201610"));
+insert into mysql.user(Host,User,Password) values("%","iwp201611",password("iwp201611"));
 
 grant all privileges on iwp201602.* to iwp201602@"%" identified by 'iwp201602';
 grant all privileges on iwp201603.* to iwp201603@"%" identified by 'iwp201603';
@@ -45,3 +49,4 @@ grant all privileges on iwp201607.* to iwp201607@"%" identified by 'iwp201607';
 grant all privileges on iwp201608.* to iwp201608@"%" identified by 'iwp201608';
 grant all privileges on iwp201609.* to iwp201609@"%" identified by 'iwp201609';
 grant all privileges on iwp201610.* to iwp201610@"%" identified by 'iwp201610';
+grant all privileges on iwp201611.* to iwp201611@"%" identified by 'iwp201611';

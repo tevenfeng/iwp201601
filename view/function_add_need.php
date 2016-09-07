@@ -14,7 +14,7 @@ function get_extension($file_path)
 session_start();
 require_once "../medoo.php";
 
-$photoBaseDir = '/home/iwp201601/images/goods_photos/';
+$photoBaseDir = '../images/goods_photos/';
 
 $get_user_id = trim($_SESSION["login_user_id"]);
 $get_title = trim($_POST["title"]);

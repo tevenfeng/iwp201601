@@ -72,6 +72,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
             <div class="row">
                 <?php
                 for ($i = 0; $i < $need_number; $i++) {
+                    $pictures = json_decode($need_information[$i]["need_goods_picture_path"], true);
                     ?>
                     <div class="col-md-6">
                         <a href="/view/view_goods_information.php?need_id=<?php echo $need_information[$i]["need_id"]; ?>">
@@ -82,11 +83,11 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="row">
-                                        <div
-                                            class="col-md-6"><?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
-                                        <div
-                                            class="col-md-6"><?php echo $need_information[$i]["need_goods_picture_path"]; ?></div>
+                                    <div>
+                                        <img src="<?php echo $pictures[0]; ?>" height="300px;"/>
+                                    </div>
+                                    <div>
+                                        <?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?>
                                     </div>
                                 </div>
                             </div>

@@ -59,7 +59,7 @@ if (!isset($_SESSION)) {
                                     <li class="dropdown-header">Needs and Deals</li>
                                     <li><a href="/view/view_uncompleted_needs.php">Unfinished Needs</a></li>
                                     <li><a href="/view/view_completed_needs.php">Finished Needs</a></li>
-                                    <li><a href="/view/view_trading_information.php">Your Deals</a></li>
+<!--                                    <li><a href="/view/view_trading_information.php">Your Deals</a></li>-->
                                     <li class="divider"></li>
                                     <li><a href="/view/function_logout.php">Logout</a></li>
                                 </ul>

@@ -123,13 +123,8 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                             </div>
                         </div>
                     </div>
-
-
                 <?php } ?>
-
             </div>
-
-
         </div>
         <div class="col-sm-2 col-md-3"></div>
     </div>

@@ -67,6 +67,7 @@ try {
             <div class="row">
                 <?php
                 for ($i = 0; $i < $need_number; $i++) {
+                    $pictures = json_decode($needs_of_category[$i]["need_goods_picture_path"], true);
                     ?>
                     <div class="col-md-6">
                         <a href="view_goods_information.php?need_id=<?php echo $needs_of_category[$i]["need_id"]; ?>">
@@ -77,11 +78,11 @@ try {
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="row">
-                                        <div
-                                            class="col-md-6"><?php echo substr($needs_of_category[$i]["need_goods_description"], 0, 100) . '……'; ?></div>
-                                        <div
-                                            class="col-md-6"><?php echo $needs_of_category[$i]["need_goods_picture_path"]; ?></div>
+                                    <div>
+                                        <img src="<?php echo $pictures[0]; ?>" height="300px;"/>
+                                    </div>
+                                    <div>
+                                        <?php echo substr($needs_of_category[$i]["need_goods_description"], 0, 100) . '……'; ?>
                                     </div>
                                 </div>
                             </div>
