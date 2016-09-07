@@ -1,4 +1,4 @@
-use database eswap;
+use eswap;
 INSERT INTO users_information (user_nickname, user_email, user_password)
 VALUES ('tevenfeng', 'fengdingwen@outlook.com', '000417');
 INSERT INTO users_information (user_nickname, user_email, user_password)
