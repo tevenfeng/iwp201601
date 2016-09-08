@@ -142,9 +142,9 @@ try {
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div style="text-align: center; overflow: hidden;">
+                                    <div style="text-align: center; overflow: hidden; height: 320px;">
                                         <img src="<?php echo $pictures[0]; ?>"
-                                             style="max-height: 250px; max-width: 250px;"/>
+                                             style="max-height: 300px; max-width: 300px;"/>
                                     </div>
                                     <div>
                                         <?php echo substr($most_recent_need_information[$i]["need_goods_description"], 0, 100) . '……'; ?>
@@ -166,7 +166,7 @@ try {
                                         </h3>
                                     </div>
                                     <div class="panel-body">
-                                        <div style="text-align: center; overflow: hidden;">
+                                        <div style="text-align: center; overflow: hidden; height: 320px;">
                                             <img src="<?php echo $pictures[0]; ?>"
                                                  style="max-height: 300px; max-width: 300px;"/>
                                         </div>
