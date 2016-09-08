@@ -14,6 +14,15 @@ include "navbar.php";
 $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
 require_once "../medoo.php";
 
+if (isset($_GET['page'])) {
+    $page = intval($_GET['page']);
+} else {
+//设置为第一页
+    $page = 1;
+}
+
+$start = 6 * $page - 6;
+$end = $start + 5;
 
 try {
     $database = new medoo([
@@ -33,7 +42,8 @@ try {
         $needs_of_category = $database->query("select user_nickname, 
                                                              needs_information.* 
                                                       from needs_information join users_information 
-                                                      where user_id=need_user_id and need_state=0 and need_goods_first_class='" . $firstCat . "';")->fetchAll();
+                                                      where user_id=need_user_id and need_state=0 and need_goods_first_class='" . $firstCat . "'
+                                                      limit " . $start . "," . $end . ";")->fetchAll();
 
         $need_number = count($needs_of_category);
 
@@ -42,7 +52,8 @@ try {
         $needs_of_category = $database->query("select user_nickname, 
                                                              needs_information.* 
                                                       from needs_information join users_information 
-                                                      where user_id=need_user_id and need_state=0 and need_goods_second_class='" . $secondCat . "';")->fetchAll();
+                                                      where user_id=need_user_id and need_state=0 and need_goods_second_class='" . $secondCat . "'
+                                                      limit " . $start . "," . $end . ";")->fetchAll();
         $need_number = count($needs_of_category);
     }
 } catch (Exception $exception) {
@@ -64,6 +75,33 @@ try {
         </div>
         <div class="well col-sm-8 col-md-6" style="min-height: 90%">
             <!--            在这里放这个页面的内容-->
+            <?php
+            if (isset($_GET["firstCat"])) {
+                ?>
+                <ul class="pager">
+                    <li class="previous <?php if ($page == 1) {
+                        echo "disabled";
+                    } ?>"><a href="view_search_needs.php?page=<?php echo $page - 1; ?>&firstCat=<?php echo $firstCat;?>">← Newer</a></li>
+                    <li class="next <?php if ($page == 10) {
+                        echo "disabled";
+                    } ?>"><a class="withripple" href="view_search_needs.php?page=<?php echo $page + 1; ?>&firstCat=<?php echo $firstCat;?>">Older →</a>
+                    </li>
+                </ul>
+                <?php
+            }else if(isset($_GET["secondCat"])) {
+                ?>
+                <ul class="pager">
+                    <li class="previous <?php if ($page == 1) {
+                        echo "disabled";
+                    } ?>"><a href="view_search_needs.php?page=<?php echo $page - 1; ?>&secondCat=<?php echo $secondCat;?>">← Newer</a></li>
+                    <li class="next <?php if ($page == 10) {
+                        echo "disabled";
+                    } ?>"><a class="withripple" href="view_search_needs.php?page=<?php echo $page + 1; ?>&secondCat=<?php echo $secondCat;?>">Older →</a>
+                    </li>
+                </ul>
+                <?php
+            }
+            ?>
             <div class="row">
                 <?php
                 for ($i = 0; $i < $need_number; $i++) {

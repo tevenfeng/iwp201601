@@ -14,6 +14,16 @@
 <?php
 include "view/navbar.php";
 
+if (isset($_GET['page'])) {
+    $page = intval($_GET['page']);
+} else {
+//设置为第一页
+    $page = 1;
+}
+
+$start = 6 * $page - 6;
+$end = $start + 5;
+
 $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
 
 require_once "medoo.php";
@@ -52,7 +62,7 @@ try {
                                                              needs_information.* 
                                                       from needs_information join users_information 
                                                       where user_id=need_user_id and need_state=0
-                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit 0,8;")->fetchAll();
+                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit " . $start . "," . $end . ";")->fetchAll();
 
     $need_number = count($most_recent_need_information);
 
@@ -102,6 +112,14 @@ try {
         </div>
         <div class="well col-sm-8 col-md-6">
             <!--            主页内容-->
+            <ul class="pager">
+                <li class="previous <?php if ($page <= 1) {
+                    echo "disabled";
+                } ?>"><a href="index.php?page=<?php if($page<=1){echo 1;}else{echo $page-1;} ?>">← Newer</a></li>
+                <li class="next <?php if ($page >= 10) {
+                    echo "disabled";
+                } ?>"><a class="withripple" href="index.php?page=<?php if($page>=10){echo 10;}else{echo $page+1;} ?>">Older →</a></li>
+            </ul>
             <div class="row">
                 <?php
                 for ($i = 0; $i < $need_number; $i++) {
@@ -117,7 +135,7 @@ try {
                                 </div>
                                 <div class="panel-body">
                                     <div>
-                                        <img src="<?php echo $pictures[0]; ?>" height="300px;"/>
+                                        <img src="<?php echo $pictures[0]; ?>" height="250px;"/>
                                     </div>
                                     <div>
                                         <?php echo substr($most_recent_need_information[$i]["need_goods_description"], 0, 100) . '……'; ?>
