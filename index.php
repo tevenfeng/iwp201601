@@ -22,7 +22,7 @@ if (isset($_GET['page'])) {
 }
 
 $start = 6 * $page - 6;
-$end = $start + 5;
+$end = $start + 6;
 
 $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "panel-info"];
 
