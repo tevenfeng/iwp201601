@@ -62,7 +62,7 @@ try {
                                                              needs_information.* 
                                                       from needs_information join users_information 
                                                       where user_id=need_user_id and need_state=0
-                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit " . $start . "," . $end . ";")->fetchAll();
+                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit " . $start . ",6" . ";")->fetchAll();
 
     $need_number = count($most_recent_need_information);
 

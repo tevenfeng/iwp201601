@@ -43,7 +43,7 @@ try {
                                                              needs_information.* 
                                                       from needs_information join users_information 
                                                       where user_id=need_user_id and need_state=0 and need_goods_first_class='" . $firstCat . "'
-                                                      limit " . $start . "," . $end . ";")->fetchAll();
+                                                      limit " . $start . ",6" . ";")->fetchAll();
 
         $need_number = count($needs_of_category);
 
@@ -53,7 +53,7 @@ try {
                                                              needs_information.* 
                                                       from needs_information join users_information 
                                                       where user_id=need_user_id and need_state=0 and need_goods_second_class='" . $secondCat . "'
-                                                      limit " . $start . "," . $end . ";")->fetchAll();
+                                                      limit " . $start . ",6" . ";")->fetchAll();
         $need_number = count($needs_of_category);
     }
 } catch (Exception $exception) {
@@ -137,7 +137,7 @@ try {
                     </div>
                     <?php
                     if (isset($needs_of_category[$i + 1])) {
-                        $pictures = json_decode($needs_of_category[$i]["need_goods_picture_path"], true);
+                        $pictures = json_decode($needs_of_category[$i + 1]["need_goods_picture_path"], true);
                         ?>
                         <div class="col-md-6">
                             <a href="view_goods_information.php?need_id=<?php echo $needs_of_category[$i + 1]["need_id"]; ?>">
