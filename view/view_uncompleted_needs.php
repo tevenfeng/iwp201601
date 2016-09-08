@@ -76,7 +76,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                     ?>
                     <div class="col-md-6">
                         <a href="/view/view_goods_information.php?need_id=<?php echo $need_information[$i]["need_id"]; ?>">
-                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 400px;">
+                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 420px;">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><?php echo $user_information["user_nickname"] . ': '; ?>
                                         <?php echo $need_information[$i]["need_title"]; ?>

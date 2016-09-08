@@ -135,7 +135,7 @@ try {
                     ?>
                     <div class="col-md-6">
                         <a href="/view/view_goods_information.php?need_id=<?php echo $most_recent_need_information[$i]["need_id"]; ?>">
-                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 400px;">
+                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 420px;">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><?php echo $most_recent_need_information[$i]["user_nickname"] . ': '; ?>
                                         <?php echo $most_recent_need_information[$i]["need_title"]; ?>
@@ -159,7 +159,7 @@ try {
                         ?>
                         <div class="col-md-6">
                             <a href="/view/view_goods_information.php?need_id=<?php echo $most_recent_need_information[$i + 1]["need_id"]; ?>">
-                                <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 400px;">
+                                <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 420px;">
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><?php echo $most_recent_need_information[$i + 1]["user_nickname"] . ': '; ?>
                                             <?php echo $most_recent_need_information[$i + 1]["need_title"]; ?>
