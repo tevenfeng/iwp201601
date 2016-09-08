@@ -75,7 +75,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                 </div>
             </div>
         </div>
-        <div class="well col-sm-8 col-md-6">
+        <div class="well col-sm-8 col-md-7">
             <div class="row">
                 <?php
                 for ($i = 0; $i < $trade_number; $i++) {
@@ -126,6 +126,6 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                 <?php } ?>
             </div>
         </div>
-        <div class="col-sm-2 col-md-3"></div>
+        <div class="col-sm-2 col-md-2"></div>
     </div>
 </div>      

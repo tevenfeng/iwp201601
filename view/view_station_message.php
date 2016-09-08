@@ -137,7 +137,7 @@ try {
                 </div>
             </div>
         </div>
-        <div class="well col-sm-8 col-md-6">
+        <div class="well col-sm-8 col-md-7">
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="unread">
                     <div class="list-group">
@@ -277,7 +277,7 @@ try {
                 </div>
             </div>
         </div>
-        <div class="col-sm-2 col-md-3"></div>
+        <div class="col-sm-2 col-md-2"></div>
     </div>
 </div>
 
