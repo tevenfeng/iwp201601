@@ -32,7 +32,9 @@ try {
         'port' => 3306,
     ]);
 
-    $user_to_select = $_SESSION["login_email"];
+    if(isset($_SESSION["login_email"])) {
+        $user_to_select = $_SESSION["login_email"];
+    }
 
     $need_information = $database->select("needs_information", ["need_id",
         "need_user_id",
@@ -89,7 +91,7 @@ try {
                             <?php
                             for ($i = 0; $i < count($pictures); $i++) {
                                 ?>
-                                <img src="<?php echo $pictures[$i];?>" style="max-height: 250px; max-width: 250px;"/>
+                                <img src="<?php echo $pictures[$i];?>" style="max-height: 300px; max-width: 300px;"/>
                                 <?php
                             }
                             ?>
