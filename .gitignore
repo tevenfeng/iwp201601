@@ -5,3 +5,4 @@ jam
 node_modules
 composer.lock
 /.idea
+/images
