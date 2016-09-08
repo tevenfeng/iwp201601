@@ -73,7 +73,7 @@ try {
             </div>
             <br/>
         </div>
-        <div class="well col-sm-8 col-md-3" style="min-height: 90%">
+        <div class="well col-sm-8 col-md-6" style="min-height: 90%">
             <!--            在这里放这个页面的内容-->
             <?php
             if (isset($_GET["firstCat"])) {
@@ -165,7 +165,7 @@ try {
                 ?>
             </div>
         </div>
-        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-sm-2 col-md-3"></div>
     </div>
 </div>
 
