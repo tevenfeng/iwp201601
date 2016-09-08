@@ -89,7 +89,7 @@ try {
                             <?php
                             for ($i = 0; $i < count($pictures); $i++) {
                                 ?>
-                                <img src="<?php echo $pictures[$i];?>" />
+                                <img src="<?php echo $pictures[$i];?>" style="max-height: 250px; max-width: 250px;"/>
                                 <?php
                             }
                             ?>

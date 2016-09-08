@@ -135,7 +135,7 @@ try {
                                 </div>
                                 <div class="panel-body">
                                     <div>
-                                        <img src="<?php echo $pictures[0]; ?>" height="250px;"/>
+                                        <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 250px;"/>
                                     </div>
                                     <div>
                                         <?php echo substr($most_recent_need_information[$i]["need_goods_description"], 0, 100) . '……'; ?>
