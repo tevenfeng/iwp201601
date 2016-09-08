@@ -135,7 +135,7 @@ try {
                     ?>
                     <div class="col-md-6">
                         <a href="/view/view_goods_information.php?need_id=<?php echo $most_recent_need_information[$i]["need_id"]; ?>">
-                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 400px;">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><?php echo $most_recent_need_information[$i]["user_nickname"] . ': '; ?>
                                         <?php echo $most_recent_need_information[$i]["need_title"]; ?>
@@ -159,7 +159,7 @@ try {
                         ?>
                         <div class="col-md-6">
                             <a href="/view/view_goods_information.php?need_id=<?php echo $most_recent_need_information[$i + 1]["need_id"]; ?>">
-                                <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                                <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 400px;">
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><?php echo $most_recent_need_information[$i + 1]["user_nickname"] . ': '; ?>
                                             <?php echo $most_recent_need_information[$i + 1]["need_title"]; ?>
@@ -168,7 +168,7 @@ try {
                                     <div class="panel-body">
                                         <div style="text-align: center; overflow: hidden;">
                                             <img src="<?php echo $pictures[0]; ?>"
-                                                 style="max-height: 250px; max-width: 300px;"/>
+                                                 style="max-height: 300px; max-width: 300px;"/>
                                         </div>
                                         <div>
                                             <?php echo substr($most_recent_need_information[$i + 1]["need_goods_description"], 0, 100) . '……'; ?>

@@ -75,7 +75,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                     ?>
                     <div class="col-md-6">
                         <a href="/view/view_goods_information.php?need_id=<?php echo $need_information[$i]["need_id"]; ?>">
-                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                            <div class="panel <?php echo $panel[rand(0, 4)]; ?>" style="height: 400px;">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><?php echo $user_information["user_nickname"] . ': '; ?>
                                         <?php echo $need_information[$i]["need_title"]; ?>
@@ -83,7 +83,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                                 </div>
                                 <div class="panel-body">
                                     <div style="text-align: center; overflow: hidden;">
-                                        <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 300px;"/>
+                                        <img src="<?php echo $pictures[0]; ?>" style="max-height: 300px; max-width: 300px;"/>
                                     </div>
                                     <div>
                                         <?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?>
