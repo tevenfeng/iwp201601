@@ -58,11 +58,11 @@ try {
         }
     }
 
-    $most_recent_need_information = $database->query("select user_nickname, 
+    var_dump($most_recent_need_information = $database->query("select user_nickname, 
                                                              needs_information.* 
                                                       from needs_information join users_information 
                                                       where user_id=need_user_id and need_state=0
-                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit " . $start . "," . $end . ";")->fetchAll();
+                                                      order by UNIX_TIMESTAMP(need_start_time)  desc limit " . $start . "," . $end . ";")->fetchAll());
 
     $need_number = count($most_recent_need_information);
 
@@ -134,7 +134,7 @@ try {
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div>
+                                    <div style="text-align: center; overflow: hidden;">
                                         <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 250px;"/>
                                     </div>
                                     <div>

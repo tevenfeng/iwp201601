@@ -83,8 +83,8 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div>
-                                        <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 250px; overflow: hidden;"/>
+                                    <div style="text-align: center; overflow: hidden;">
+                                        <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 250px;"/>
                                     </div>
                                     <div>
                                         <?php echo substr($need_information[$i]["need_goods_description"], 0, 100) . '……'; ?>

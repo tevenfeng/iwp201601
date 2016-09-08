@@ -82,7 +82,7 @@ $panel = ["panel-primary", "panel-success", "panel-warning", "panel-danger", "pa
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div>
+                                    <div style="text-align: center; overflow: hidden;">
                                         <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 250px; overflow: hidden;"/>
                                     </div>
                                     <div>
