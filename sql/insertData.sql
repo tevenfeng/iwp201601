@@ -1,10 +1,10 @@
-use eswap;
-INSERT INTO users_information (user_nickname, user_email, user_password)
-VALUES ('tevenfeng', 'fengdingwen@outlook.com', '000417');
-INSERT INTO users_information (user_nickname, user_email, user_password)
-VALUES ('zhusihan', 'zhusihan@qq.com', '123456');
-INSERT INTO users_information (user_nickname, user_email, user_password)
-VALUES ('weiaoxue', 'weiaoxue@qq.com', '123456');
+-- use eswap;
+-- INSERT INTO users_information (user_nickname, user_email, user_password)
+-- VALUES ('tevenfeng', 'fengdingwen@outlook.com', '000417');
+-- INSERT INTO users_information (user_nickname, user_email, user_password)
+-- VALUES ('zhusihan', 'zhusihan@qq.com', '123456');
+-- INSERT INTO users_information (user_nickname, user_email, user_password)
+-- VALUES ('weiaoxue', 'weiaoxue@qq.com', '123456');
 
 -- INSERT INTO needs_information (need_user_id, need_start_time, need_state, need_title, need_goods_description, need_goods_quality, need_goods_first_class, need_goods_second_class, need_goods_picture_path, need_goal_goods)
 -- VALUES (1, '2016-08-28 19:20:01', 0, 'iPhone6s 64G for Samsung S7 edge 32G',
