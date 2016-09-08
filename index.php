@@ -130,7 +130,7 @@ try {
             </ul>
             <div class="row">
                 <?php
-                for ($i = 0; $i < $need_number; $i++) {
+                for ($i = 0; $i < $need_number; $i = $i + 2) {
                     $pictures = json_decode($most_recent_need_information[$i]["need_goods_picture_path"], true);
                     ?>
                     <div class="col-md-6">
@@ -154,6 +154,31 @@ try {
                         </a>
                     </div>
                     <?php
+                    if(isset($most_recent_need_information[$i+1])) {
+                        $pictures = json_decode($most_recent_need_information[$i + 1]["need_goods_picture_path"], true);
+                        ?>
+                        <div class="col-md-6">
+                            <a href="/view/view_goods_information.php?need_id=<?php echo $most_recent_need_information[$i + 1]["need_id"]; ?>">
+                                <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><?php echo $most_recent_need_information[$i + 1]["user_nickname"] . ': '; ?>
+                                            <?php echo $most_recent_need_information[$i + 1]["need_title"]; ?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div style="text-align: center; overflow: hidden;">
+                                            <img src="<?php echo $pictures[0]; ?>"
+                                                 style="max-height: 250px; max-width: 250px;"/>
+                                        </div>
+                                        <div>
+                                            <?php echo substr($most_recent_need_information[$i + 1]["need_goods_description"], 0, 100) . '……'; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                    }
                 }
                 ?>
             </div>

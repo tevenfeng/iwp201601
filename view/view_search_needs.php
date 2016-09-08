@@ -81,22 +81,30 @@ try {
                 <ul class="pager">
                     <li class="previous <?php if ($page == 1) {
                         echo "disabled";
-                    } ?>"><a href="view_search_needs.php?page=<?php echo $page - 1; ?>&firstCat=<?php echo $firstCat;?>">← Newer</a></li>
+                    } ?>"><a
+                            href="view_search_needs.php?page=<?php echo $page - 1; ?>&firstCat=<?php echo $firstCat; ?>">←
+                            Newer</a></li>
                     <li class="next <?php if ($page == 10) {
                         echo "disabled";
-                    } ?>"><a class="withripple" href="view_search_needs.php?page=<?php echo $page + 1; ?>&firstCat=<?php echo $firstCat;?>">Older →</a>
+                    } ?>"><a class="withripple"
+                             href="view_search_needs.php?page=<?php echo $page + 1; ?>&firstCat=<?php echo $firstCat; ?>">Older
+                            →</a>
                     </li>
                 </ul>
                 <?php
-            }else if(isset($_GET["secondCat"])) {
+            } else if (isset($_GET["secondCat"])) {
                 ?>
                 <ul class="pager">
                     <li class="previous <?php if ($page == 1) {
                         echo "disabled";
-                    } ?>"><a href="view_search_needs.php?page=<?php echo $page - 1; ?>&secondCat=<?php echo $secondCat;?>">← Newer</a></li>
+                    } ?>"><a
+                            href="view_search_needs.php?page=<?php echo $page - 1; ?>&secondCat=<?php echo $secondCat; ?>">←
+                            Newer</a></li>
                     <li class="next <?php if ($page == 10) {
                         echo "disabled";
-                    } ?>"><a class="withripple" href="view_search_needs.php?page=<?php echo $page + 1; ?>&secondCat=<?php echo $secondCat;?>">Older →</a>
+                    } ?>"><a class="withripple"
+                             href="view_search_needs.php?page=<?php echo $page + 1; ?>&secondCat=<?php echo $secondCat; ?>">Older
+                            →</a>
                     </li>
                 </ul>
                 <?php
@@ -104,7 +112,7 @@ try {
             ?>
             <div class="row">
                 <?php
-                for ($i = 0; $i < $need_number; $i++) {
+                for ($i = 0; $i < $need_number; $i = $i + 2) {
                     $pictures = json_decode($needs_of_category[$i]["need_goods_picture_path"], true);
                     ?>
                     <div class="col-md-6">
@@ -117,7 +125,8 @@ try {
                                 </div>
                                 <div class="panel-body">
                                     <div style="text-align: center; overflow: hidden;">
-                                        <img src="<?php echo $pictures[0]; ?>" style="max-height: 250px; max-width: 250px; overflow: hidden;"/>
+                                        <img src="<?php echo $pictures[0]; ?>"
+                                             style="max-height: 250px; max-width: 250px; overflow: hidden;"/>
                                     </div>
                                     <div>
                                         <?php echo substr($needs_of_category[$i]["need_goods_description"], 0, 100) . '……'; ?>
@@ -126,7 +135,34 @@ try {
                             </div>
                         </a>
                     </div>
-                <?php } ?>
+                    <?php
+                    if (isset($needs_of_category[$i + 1])) {
+                        $pictures = json_decode($needs_of_category[$i]["need_goods_picture_path"], true);
+                        ?>
+                        <div class="col-md-6">
+                            <a href="view_goods_information.php?need_id=<?php echo $needs_of_category[$i + 1]["need_id"]; ?>">
+                                <div class="panel <?php echo $panel[rand(0, 4)]; ?>">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><?php echo $needs_of_category[$i + 1]["user_nickname"] . ': '; ?>
+                                            <?php echo $needs_of_category[$i + 1]["need_title"]; ?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div style="text-align: center; overflow: hidden;">
+                                            <img src="<?php echo $pictures[0]; ?>"
+                                                 style="max-height: 250px; max-width: 250px; overflow: hidden;"/>
+                                        </div>
+                                        <div>
+                                            <?php echo substr($needs_of_category[$i + 1]["need_goods_description"], 0, 100) . '……'; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
         <div class="col-sm-2 col-md-3"></div>
