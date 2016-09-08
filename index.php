@@ -168,7 +168,7 @@ try {
                                     <div class="panel-body">
                                         <div style="text-align: center; overflow: hidden;">
                                             <img src="<?php echo $pictures[0]; ?>"
-                                                 style="max-height: 250px; max-width: 250px;"/>
+                                                 style="max-height: 250px; max-width: 300px;"/>
                                         </div>
                                         <div>
                                             <?php echo substr($most_recent_need_information[$i + 1]["need_goods_description"], 0, 100) . '……'; ?>

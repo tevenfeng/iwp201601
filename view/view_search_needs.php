@@ -150,7 +150,7 @@ try {
                                     <div class="panel-body">
                                         <div style="text-align: center; overflow: hidden;">
                                             <img src="<?php echo $pictures[0]; ?>"
-                                                 style="max-height: 250px; max-width: 250px; overflow: hidden;"/>
+                                                 style="max-height: 300px; max-width: 300px; overflow: hidden;"/>
                                         </div>
                                         <div>
                                             <?php echo substr($needs_of_category[$i + 1]["need_goods_description"], 0, 100) . '……'; ?>
