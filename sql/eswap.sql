@@ -62,7 +62,7 @@ CREATE TABLE station_message (
   message_agree_request BOOLEAN, # 0 stands for denying, 1 stands for agreement
   FOREIGN KEY (message_from_user_id) REFERENCES users_information (user_id),
   FOREIGN KEY (message_to_user_id) REFERENCES users_information (user_id),
-  FOREIGN KEY (message_to_user_id) REFERENCES needs_information (need_user_id),
+#   FOREIGN KEY (message_to_user_id) REFERENCES needs_information (need_user_id),
   FOREIGN KEY (message_need_id) REFERENCES needs_information (need_id)
 );
 

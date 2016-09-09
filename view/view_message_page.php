@@ -36,7 +36,7 @@ if ($type === "signinWrong") {
 }else if($type=="applySuccess"){
     $messageContent="You've successfully applied for the need! Please wait for reply!";
     $messageType="Succeed";
-    $action="#";
+    $action="/";
 }
 
 ?>
